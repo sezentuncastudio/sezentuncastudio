@@ -57,15 +57,25 @@ function closeDetail() {
 }
 document.addEventListener('keydown', e => { if (e.key==='Escape') closeDetail(); });
 
-function showPage(id) {
+function showPage(id, pushState=true) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   const n = document.getElementById('nav-'+id);
   if (n) n.classList.add('active');
   window.scrollTo(0,0);
+  if (pushState) history.pushState({page:id}, '', '#'+id);
   return false;
 }
+
+// Browser back/forward button support
+window.addEventListener('popstate', e => {
+  const id = (e.state && e.state.page) || 'home';
+  showPage(id, false);
+});
+
+// Set initial history state
+history.replaceState({page:'home'}, '', '#home');
 
 function filterWork(cat, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
