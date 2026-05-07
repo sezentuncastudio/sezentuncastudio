@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="tr">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Sezen Tunca Studio
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&amp;family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&amp;family=DM+Mono:wght@300;400&amp;family=Outfit:wght@200;300;400&amp;display=swap" rel="stylesheet"/>
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <nav>
+   <a class="nav-logo" onclick="showPage('home')">
+    Sezen
+    <em>
+     Tunca
+    </em>
+    Studio
+   </a>
+   <div class="nav-right">
+    <ul class="nav-links">
+     <li>
+      <a href="#" id="nav-work" onclick="showPage('work');return false;">
+       WORK
+      </a>
+     </li>
+     <li>
+      <a href="#" id="nav-about" onclick="showPage('about');return false;">
+       ABOUT
+      </a>
+     </li>
+     <li>
+      <a href="#" id="nav-services" onclick="showPage('services');return false;">
+       SERVICES
+      </a>
+     </li>
+     <li>
+      <a href="#" id="nav-journal" onclick="showPage('journal');return false;">
+       JOURNAL
+      </a>
+     </li>
+     <li>
+      <a href="#" id="nav-contact" onclick="showPage('contact');return false;">
+       CONTACT
+      </a>
+     </li>
+    </ul>
+    <div class="lang-sep">
+    </div>
+    <button class="lang-btn active" id="btn-tr" onclick="setLang('tr')">
+     TR
+    </button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">
+     EN
+    </button>
+   </div>
+  </nav>
+  <div id="detail-overlay">
+   <button class="detail-close" id="detail-close-btn" onclick="closeDetail()">
+    Kapat ✕
+   </button>
+   <div class="detail-inner" id="detail-inner">
+   </div>
+  </div>
+  <!-- HOME -->
+  <div class="page active" id="page-home">
+   <section class="hero" style="grid-template-columns:1fr;padding:110px 48px 72px;">
+    <div style="max-width:720px;">
+     <p class="hero-tagline" id="hero-tagline" style="font-size:clamp(24px,3vw,36px);max-width:640px;margin-bottom:32px;">
+      Creating visual experiences that reflect you and your brand's soul — through strategy, form, and enduring craft.
+     </p>
+     <div class="hero-meta">
+      <span>
+       Istanbul — 2020
+      </span>
+      <span>
+       Branding · Packaging · Direction
+      </span>
+     </div>
+    </div>
+   </section>
+   <div class="divider">
+   </div>
+   <div class="home-work-header">
+    <span class="sec-label" id="home-sel-label">
+     Seçili Çalışmalar
+    </span>
+    <a class="view-all-link" href="#" id="home-view-all" onclick="showPage('work');return false;">
+     Tümünü Gör →
+    </a>
+   </div>
+   <div class="project-grid">
+    <div class="project-card" onclick="openDetail('fleu')">
+     <div class="project-img-wrap">
+      <img alt="Fleu" loading="lazy" src="embed_1.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Marka Kimliği · Ambalaj
+       </div>
+       <div class="overlay-name">
+        Fléu
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Marka Kimliği · Ambalaj
+      </div>
+      <div class="project-name">
+       Fléu
+      </div>
+     </div>
+    </div>
+    <div class="project-card" onclick="openDetail('bargozzy')">
+     <div class="project-img-wrap">
+      <img alt="Bargozzy" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_24899dcb6d344007a66a44e44e7e6e78~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Marka Kimliği
+       </div>
+       <div class="overlay-name">
+        Bargozzy
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Marka Kimliği
+      </div>
+      <div class="project-name">
+       Bargozzy
+      </div>
+     </div>
+    </div>
+    <div class="project-card" onclick="openDetail('melez')">
+     <div class="project-img-wrap">
+      <img alt="Melez" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_3f4cc39eda964c2d9844933fba4125a0~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Ambalaj Tasarımı
+       </div>
+       <div class="overlay-name">
+        Melez
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Ambalaj Tasarımı
+      </div>
+      <div class="project-name">
+       Melez
+      </div>
+     </div>
+    </div>
+    <div class="project-card" onclick="openDetail('bera')">
+     <div class="project-img-wrap">
+      <img alt="BERA" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_8dda795877b8486595667931f45466fb~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Marka Kimliği
+       </div>
+       <div class="overlay-name">
+        BERA
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Marka Kimliği
+      </div>
+      <div class="project-name">
+       BERA
+      </div>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <div class="footer-logo">
+     Sezen Tunca Studio
+    </div>
+    <div class="footer-copy">
+     © 2025 — Istanbul
+    </div>
+   </footer>
+  </div>
+  <!-- WORK -->
+  <div class="page" id="page-work">
+   <div class="work-header">
+    <span class="sec-label" id="work-title">
+     Tüm Projeler
+    </span>
+    <div class="filter-bar">
+     <button class="filter-btn active" id="fb-all" onclick="filterWork('all',this)">
+      Tümü
+     </button>
+     <button class="filter-btn" id="fb-branding" onclick="filterWork('branding',this)">
+      Marka Kimliği
+     </button>
+     <button class="filter-btn" id="fb-packaging" onclick="filterWork('packaging',this)">
+      Ambalaj
+     </button>
+     <button class="filter-btn" id="fb-direction" onclick="filterWork('direction',this)">
+      Art Direction
+     </button>
+    </div>
+   </div>
+   <div class="project-grid" id="work-grid">
+    <div class="project-card" data-cat="branding" onclick="openDetail('fleu')">
+     <div class="project-img-wrap">
+      <img alt="Fleu" loading="lazy" src="embed_2.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Marka Kimliği · Ambalaj
+       </div>
+       <div class="overlay-name">
+        Fléu
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Marka Kimliği · Ambalaj
+      </div>
+      <div class="project-name">
+       Fléu
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="branding" onclick="openDetail('bargozzy')">
+     <div class="project-img-wrap">
+      <img alt="Bargozzy" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_24899dcb6d344007a66a44e44e7e6e78~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Marka Kimliği
+       </div>
+       <div class="overlay-name">
+        Bargozzy
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Marka Kimliği
+      </div>
+      <div class="project-name">
+       Bargozzy
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="packaging" onclick="openDetail('beachyside')">
+     <div class="project-img-wrap">
+      <img alt="My Beachy Side" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_b491d6a703594ddebe1636e59710c1a3~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Ambalaj Tasarımı
+       </div>
+       <div class="overlay-name">
+        My Beachy Side
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Ambalaj Tasarımı
+      </div>
+      <div class="project-name">
+       My Beachy Side
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="branding" onclick="openDetail('tanks')">
+     <div class="tanks-video-wrap">
+      <video class="tanks-video" loop="" muted="" playsinline="" preload="auto" src="embed_3.mp4">
+      </video>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Marka Kimliği
+       </div>
+       <div class="overlay-name">
+        TANKS
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Marka Kimliği
+      </div>
+      <div class="project-name">
+       TANKS
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="packaging" onclick="openDetail('melez')">
+     <div class="project-img-wrap">
+      <img alt="Melez" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_3f4cc39eda964c2d9844933fba4125a0~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Ambalaj Tasarımı
+       </div>
+       <div class="overlay-name">
+        Melez
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Ambalaj Tasarımı
+      </div>
+      <div class="project-name">
+       Melez
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="branding" onclick="openDetail('bera')">
+     <div class="project-img-wrap">
+      <img alt="BERA" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_8dda795877b8486595667931f45466fb~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Marka Kimliği
+       </div>
+       <div class="overlay-name">
+        BERA
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Marka Kimliği
+      </div>
+      <div class="project-name">
+       BERA
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="packaging" onclick="openDetail('takecoff')">
+     <div class="project-img-wrap">
+      <img alt="Takecoff" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_999d0df633024b8787ac00aaf043fcac~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Packaging Design
+       </div>
+       <div class="overlay-name">
+        Takecoff
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Packaging Design
+      </div>
+      <div class="project-name">
+       Takecoff
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="direction" onclick="openDetail('handloom')">
+     <div class="project-img-wrap">
+      <img alt="The Handloom LA" loading="lazy" src="https://static.wixstatic.com/media/a825f2_3c04fff508a74cf1bbbf9cbd967007b3~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Art Direction
+       </div>
+       <div class="overlay-name">
+        The Handloom LA
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Art Direction
+      </div>
+      <div class="project-name">
+       The Handloom LA
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="packaging" onclick="openDetail('odetosun')">
+     <div class="project-img-wrap">
+      <img alt="Ode to Sun" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_4a86607ca0f94fbea8ad661e3fa645ee~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Packaging Design
+       </div>
+       <div class="overlay-name">
+        Ode to Sun
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Packaging Design
+      </div>
+      <div class="project-name">
+       Ode to Sun
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="branding" onclick="openDetail('fleim')">
+     <div class="project-img-wrap">
+      <img alt="Fleim" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_ceb90d09df544f4cbeceb2dfd6c54849~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Brand Identity · Packaging
+       </div>
+       <div class="overlay-name">
+        Fléim
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Brand Identity · Packaging
+      </div>
+      <div class="project-name">
+       Fléim
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="branding" onclick="openDetail('authenticseconds')">
+     <div class="project-img-wrap">
+      <img alt="Authentic Seconds" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_abfd0ebdd6f94f18afd047db0d33a76c~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Brand Identity
+       </div>
+       <div class="overlay-name">
+        Authentic Seconds
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Brand Identity
+      </div>
+      <div class="project-name">
+       Authentic Seconds
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="branding" onclick="openDetail('trattoria')">
+     <div class="project-img-wrap">
+      <img alt="Trattoria di Kukina" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_c212030d97e84098a6d88c409188787b~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Brand Identity
+       </div>
+       <div class="overlay-name">
+        Trattoria di Kukina
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Brand Identity
+      </div>
+      <div class="project-name">
+       Trattoria di Kukina
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="direction" onclick="openDetail('generation78')">
+     <div class="project-img-wrap">
+      <img alt="Generation 78" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_0abe3ecb196749e4af6a0953a0b7bf4e~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Art Direction
+       </div>
+       <div class="overlay-name">
+        Génération 78
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Art Direction
+      </div>
+      <div class="project-name">
+       Génération 78
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="direction" onclick="openDetail('ipekyol')">
+     <div class="project-img-wrap">
+      <img alt="Ipekyol" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_8259688205c34de7b484de35f4e44d5a~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Art Direction
+       </div>
+       <div class="overlay-name">
+        İpekyol
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Art Direction
+      </div>
+      <div class="project-name">
+       İpekyol Christmas 2025
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="branding" onclick="openDetail('nidnoi')">
+     <div class="project-img-wrap">
+      <img alt="Nid Noi" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_d8393cc549af4ee3b7c28e12ca4e2660~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Brand Identity
+       </div>
+       <div class="overlay-name">
+        Nid Noi
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Brand Identity
+      </div>
+      <div class="project-name">
+       Nid Noi
+      </div>
+     </div>
+    </div>
+    <div class="project-card" data-cat="branding" onclick="openDetail('giselle')">
+     <div class="project-img-wrap">
+      <img alt="Giselle" loading="lazy" src="https://static.wixstatic.com/media/4ff32a_ea0930af27ff45c8a8c5e0c9c8d46167~mv2.jpg/v1/fill/w_900,h_1200/file.jpg"/>
+      <div class="project-overlay">
+       <div class="overlay-cat">
+        Brand Identity
+       </div>
+       <div class="overlay-name">
+        Giselle
+       </div>
+      </div>
+     </div>
+     <div class="project-info">
+      <div class="project-cat">
+       Brand Identity
+      </div>
+      <div class="project-name">
+       Giselle
+      </div>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <div class="footer-logo">
+     Sezen Tunca Studio
+    </div>
+    <div class="footer-copy">
+     © 2025 — Istanbul
+    </div>
+   </footer>
+  </div>
+  <!-- ABOUT -->
+  <div class="page" id="page-about">
+   <div style="padding:80px 48px;max-width:760px;">
+    <span class="sec-label" id="about-sec">
+     About the Studio
+    </span>
+    <h2 class="about-headline" id="about-headline" style="margin:22px 0 30px;">
+     Design as a form
+     <br/>
+     of
+     <em>
+      thinking
+     </em>
+    </h2>
+    <p class="about-body" id="about-body1" style="max-width:640px;font-size:16px;line-height:2;">
+     Sezen Tunca Studio is an Istanbul-based creative studio founded in 2020. We build brand identities that are purposeful, precise, and quietly unforgettable.
+    </p>
+    <p class="about-body" id="about-body2" style="max-width:640px;font-size:16px;line-height:2;margin-top:20px;">
+     Our practice spans brand strategy, visual identity, packaging design, and art direction — everywhere a brand shows up in the world to meaningfully connect.
+    </p>
+    <div style="margin-top:48px;padding-top:32px;border-top:0.5px solid var(--ink-faint);">
+     <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--ink-mid);line-height:1.8;">
+      Sezen Tunca
+      <br/>
+      Founder &amp; Creative Director
+      <br/>
+      Istanbul, Turkey
+      <br/>
+      <a href="mailto:hello@sezentunca.com" style="color:var(--ink-mid);text-decoration:none;margin-top:8px;display:inline-block;">
+       hello@sezentunca.com
+      </a>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <div class="footer-logo">
+     Sezen Tunca Studio
+    </div>
+    <div class="footer-copy">
+     © 2025 — Istanbul
+    </div>
+   </footer>
+  </div>
+  <!-- SERVICES -->
+  <div class="page" id="page-services">
+   <div class="services-hero">
+    <span class="sec-label" id="srv-sec">
+     Hizmetlerimiz
+    </span>
+    <h2 class="services-headline" id="srv-headline">
+     Her markanin hak ettigi
+     <br/>
+     <em>
+      net bir ses
+     </em>
+    </h2>
+   </div>
+   <div>
+    <div class="service-row">
+     <span class="service-num">
+      01
+     </span>
+     <div class="service-name">
+      Marka
+      <br/>
+      <em>
+       Kimligi
+      </em>
+     </div>
+     <div class="service-desc">
+      Logo, renk sistemi, tipografi ve markanin her temas noktasinda nasil gorundugunü ve hissettirdigini belirleyen tum gorsel varliklar.
+     </div>
+     <div class="service-tag">
+      Temel
+     </div>
+    </div>
+    <div class="service-row">
+     <span class="service-num">
+      02
+     </span>
+     <div class="service-name">
+      Marka
+      <br/>
+      <em>
+       Stratejisi
+      </em>
+     </div>
+     <div class="service-desc">
+      Amac, konumlandirma ve kisilik. Ne icin durdugunuzu ve bunu nasil tutarli ve net bicimde iletecegini birlikte belirliyoruz.
+     </div>
+     <div class="service-tag">
+      Kesif
+     </div>
+    </div>
+    <div class="service-row">
+     <span class="service-num">
+      03
+     </span>
+     <div class="service-name">
+      Ambalaj
+      <br/>
+      <em>
+       Tasarimi
+      </em>
+     </div>
+     <div class="service-desc">
+      Raflarda ve ellerde yasayan etiket, kutu ve yapisal tasarim. Konseptten baskiya hazir dosyalara kadar uretim destegiyle.
+     </div>
+     <div class="service-tag">
+      Baski
+     </div>
+    </div>
+    <div class="service-row">
+     <span class="service-num">
+      04
+     </span>
+     <div class="service-name">
+      Art
+      <br/>
+      <em>
+       Direction
+      </em>
+     </div>
+     <div class="service-desc">
+      Kampanyalar, lookbook'lar ve editoryal projeler icin gorsel dil ve konsept. Tek bir kare olusturulmadan once hikayeyi sekillendiriyoruz.
+     </div>
+     <div class="service-tag">
+      Kampanya
+     </div>
+    </div>
+    <div class="service-row">
+     <span class="service-num">
+      05
+     </span>
+     <div class="service-name">
+      Ozel
+      <br/>
+      <em>
+       Ilustrasyon
+      </em>
+     </div>
+     <div class="service-desc">
+      Ambalaj, editoryal ve marka anlatilar icin el yapimi ilustrasyon. Her parca tam olarak sizin gorsel dunyaniza gore uretilir.
+     </div>
+     <div class="service-tag">
+      Zanaat
+     </div>
+    </div>
+   </div>
+   <div class="process-section">
+    <span class="sec-label" id="proc-sec-label" style="color:#555;letter-spacing:0.18em;">
+     Process
+    </span>
+    <p id="proc-sec-sub" style="font-family:var(--serif);font-size:20px;font-style:italic;color:#666;margin-top:16px;max-width:500px;line-height:1.6;">
+     A thoughtful process that moves
+     <br/>
+     at the pace of good ideas.
+    </p>
+    <div class="process-roadmap">
+     <div class="process-line">
+     </div>
+     <div class="process-steps-road">
+      <div class="road-step">
+       <div class="road-dot">
+        <span>
+         01
+        </span>
+       </div>
+       <div class="road-content">
+        <div class="road-title">
+         Introduction
+        </div>
+        <div class="road-desc">
+         Understanding the brand, the founder, the product and the intention behind it.
+        </div>
+       </div>
+      </div>
+      <div class="road-step">
+       <div class="road-dot">
+        <span>
+         02
+        </span>
+       </div>
+       <div class="road-content">
+        <div class="road-title">
+         Brand Core
+        </div>
+        <div class="road-desc">
+         Defining what the brand believes in, how it behaves, and what it wants to be known for.
+        </div>
+       </div>
+      </div>
+      <div class="road-step">
+       <div class="road-dot">
+        <span>
+         03
+        </span>
+       </div>
+       <div class="road-content">
+        <div class="road-title">
+         Visual World
+        </div>
+        <div class="road-desc">
+         Creating the moodboard, references, atmosphere and first visual direction.
+        </div>
+       </div>
+      </div>
+      <div class="road-step">
+       <div class="road-dot">
+        <span>
+         04
+        </span>
+       </div>
+       <div class="road-content">
+        <div class="road-title">
+         Feedback &amp; Refinement
+        </div>
+        <div class="road-desc">
+         Clarifying the direction through conversation, feedback and creative editing.
+        </div>
+       </div>
+      </div>
+      <div class="road-step">
+       <div class="road-dot">
+        <span>
+         05
+        </span>
+       </div>
+       <div class="road-content">
+        <div class="road-title">
+         Identity Design
+        </div>
+        <div class="road-desc">
+         Designing the logo, typography, colour palette, visual language and key brand assets.
+        </div>
+       </div>
+      </div>
+      <div class="road-step">
+       <div class="road-dot">
+        <span>
+         06
+        </span>
+       </div>
+       <div class="road-content">
+        <div class="road-title">
+         Brand System
+        </div>
+        <div class="road-desc">
+         Building a clear and usable system that can live across packaging, print, digital and social touchpoints.
+        </div>
+       </div>
+      </div>
+      <div class="road-step">
+       <div class="road-dot">
+        <span>
+         07
+        </span>
+       </div>
+       <div class="road-content">
+        <div class="road-title">
+         Final Delivery
+        </div>
+        <div class="road-desc">
+         Preparing the brand files and guidelines so the identity can be used consistently and confidently.
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <div class="footer-logo">
+     Sezen Tunca Studio
+    </div>
+    <div class="footer-copy">
+     © 2025 — Istanbul
+    </div>
+   </footer>
+  </div>
+  <!-- JOURNAL -->
+  <div class="page" id="page-journal">
+   <div class="journal-header">
+    <h2 class="journal-headline" id="jrn-headline">
+     Gunluk
+    </h2>
+    <div class="journal-sub" id="jrn-sub">
+     Tasarim, marka ve yaratici
+     <br/>
+     pratik uzerine dusunceler
+    </div>
+   </div>
+   <div class="journal-featured">
+    <div class="jfeat-img">
+    </div>
+    <div class="jfeat-content">
+     <div class="journal-date">
+      Nisan 2025 · Deneme
+     </div>
+     <div class="journal-title" style="font-size:30px;margin-bottom:12px;">
+      Gorsel tasarimda
+      <em>
+       sadelik
+      </em>
+      neden en zor beceridir
+     </div>
+     <p class="journal-excerpt">
+      Eklemek her zaman cikarmaktan daha kolaydir. Ama en cok hatirlаdigimiz markalar, soylememеyi sectikleri seylerle tanimlanir.
+     </p>
+     <span class="journal-read">
+      Devamini Oku →
+     </span>
+    </div>
+   </div>
+   <div class="journal-cards">
+    <div class="journal-card">
+     <div class="journal-date">
+      Mart 2025
+     </div>
+     <div class="journal-title">
+      Buyuyen bir marka sistemi
+      <br/>
+      <em>
+       nasil insa edilir
+      </em>
+     </div>
+     <p class="journal-excerpt">
+      Logo bir marka degildir. Renk bir kimlik degildir. Sirketle birlikte buyuyen marka sistemleri uzerine dusunceler.
+     </p>
+     <span class="journal-read">
+      Devamini Oku →
+     </span>
+    </div>
+    <div class="journal-card">
+     <div class="journal-date">
+      Subat 2025
+     </div>
+     <div class="journal-title">
+      Bir on yili tanimlayan
+      <br/>
+      <em>
+       tipografi secimleri
+      </em>
+     </div>
+     <p class="journal-excerpt">
+      On yillik marka calismasina tipografi penceresinden bakiyoruz: neye ulastik, neye pesman olduk, neye yeniden uzaniriz.
+     </p>
+     <span class="journal-read">
+      Devamini Oku →
+     </span>
+    </div>
+   </div>
+   <footer>
+    <div class="footer-logo">
+     Sezen Tunca Studio
+    </div>
+    <div class="footer-copy">
+     © 2025 — Istanbul
+    </div>
+   </footer>
+  </div>
+  <!-- CONTACT -->
+  <div class="page" id="page-contact">
+   <div class="contact-layout" style="grid-template-columns:360px 1fr;">
+    <div class="contact-left">
+     <div>
+      <span class="sec-label" id="con-sec">
+       Get in Touch
+      </span>
+      <h2 class="contact-headline" id="con-headline">
+       Let's make
+       <br/>
+       something
+       <br/>
+       <em>
+        worth keeping
+       </em>
+      </h2>
+     </div>
+     <div>
+      <div class="contact-item">
+       <div class="contact-label">
+        Email
+       </div>
+       <a class="contact-value" href="mailto:hello@sezentunca.com">
+        hello@sezentunca.com
+       </a>
+      </div>
+      <div class="contact-item">
+       <div class="contact-label" id="con-loc-label">
+        Konum
+       </div>
+       <span class="contact-value" style="font-size:15px;line-height:1.6;">
+        Hacı Emin Efendi Sk. No: 24/5
+        <br/>
+        Nişantaşı Apt. Teşvikiye / Şişli
+        <br/>
+        İstanbul, Türkiye
+       </span>
+      </div>
+      <div class="contact-item">
+       <div class="contact-label">
+        Google Maps
+       </div>
+       <a class="contact-value" href="https://maps.google.com/?q=41.051186699999995,28.995905200000003" style="font-size:14px;color:var(--ink-mid);font-family:var(--mono);letter-spacing:0.05em;" target="_blank">
+        Yol Tarifi Al →
+       </a>
+      </div>
+      <div class="contact-item">
+       <div class="contact-label">
+        Working with clients
+       </div>
+       <span class="contact-value" style="font-style:italic;font-size:15px;">
+        Worldwide
+       </span>
+      </div>
+      <div class="contact-social">
+       <a class="social-link" href="https://www.instagram.com/sezentuncastudio" target="_blank">
+        Instagram
+       </a>
+       <a class="social-link" href="https://www.behance.net/sezentunca" target="_blank">
+        Behance
+       </a>
+      </div>
+     </div>
+    </div>
+    <div class="contact-right" style="overflow-y:auto;max-height:calc(100vh - 72px);">
+     <!-- Google Maps Embed -->
+     <div style="margin-bottom:40px;border-bottom:0.5px solid var(--ink-faint);padding-bottom:40px;">
+      <span class="sec-label" style="display:block;margin-bottom:16px;">
+       Ofisimiz
+      </span>
+      <div style="border-radius:2px;overflow:hidden;height:280px;">
+       <iframe allowfullscreen="" height="280" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d752.8!2d28.995905!3d41.051187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab09b0dc1352f%3A0x1230b892bff09cc6!2sHac%C4%B1%20Emin%20Efendi%20Sok.%20No%3A24!5e0!3m2!1str!2str!4v1" style="border:0;display:block;filter:grayscale(100%) contrast(1.1);" width="100%">
+       </iframe>
+      </div>
+      <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--ink-faint);margin-top:10px;line-height:1.7;">
+       Hacı Emin Efendi Sk. No: 24/5, Nişantaşı Apt.
+       <br/>
+       Teşvikiye / Şişli, İstanbul
+      </p>
+     </div>
+     <span class="sec-label" id="con-form-label">
+      Start a Project
+     </span>
+     <form class="contact-form" id="brand-form" onsubmit="sendBrandForm(event);" style="margin-top:20px;">
+      <div class="form-group">
+       <label class="form-label" id="fl-name">
+        Ad Soyad *
+       </label>
+       <input class="form-input" id="f-name" placeholder="Adınız" required="" type="text"/>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-email">
+        E-posta *
+       </label>
+       <input class="form-input" id="f-email" placeholder="e-posta@adresiniz.com" required="" type="email"/>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-company">
+        Şirket / Marka Adı
+       </label>
+       <input class="form-input" id="f-company" placeholder="Markanızın adı nedir?" type="text"/>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-website">
+        Web Sitesi
+       </label>
+       <input class="form-input" id="f-website" placeholder="websiteniz.com (varsa)" type="text"/>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-type">
+        Ne tür bir proje arıyorsunuz? *
+       </label>
+       <select class="form-select" id="f-type" required="">
+        <option value="">
+         Bir hizmet seçin
+        </option>
+        <option>
+         Marka Kimliği (logo, renk, tipografi, marka sistemi)
+        </option>
+        <option>
+         Marka Stratejisi (konumlandırma, mesaj, ses tonu)
+        </option>
+        <option>
+         Ambalaj Tasarımı
+        </option>
+        <option>
+         Art Direction (kampanya, lookbook, editoryal)
+        </option>
+        <option>
+         Özel İllüstrasyon
+        </option>
+        <option>
+         Tam Marka — Kimlik + Strateji
+        </option>
+        <option>
+         Henüz emin değilim — konuşalım
+        </option>
+       </select>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-about">
+        Markanız hakkında anlatın
+       </label>
+       <textarea class="form-textarea" id="f-about" placeholder="Markanız ne yapıyor? Kime hitap ediyor? Sizi farklı kılan ne?" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-stage">
+        Süreçte neredesiniz?
+       </label>
+       <select class="form-select" id="f-stage">
+        <option value="">
+         Birini seçin
+        </option>
+        <option>
+         Sıfırdan başlıyorum — henüz bir marka yok
+        </option>
+        <option>
+         Var olan markayı yenilemek istiyorum
+        </option>
+        <option>
+         Tam bir yeniden markalama
+        </option>
+        <option>
+         Belirli bir teslimat (ambalaj, kampanya vb.)
+        </option>
+       </select>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-audience">
+        Hedef kitleniz kim?
+       </label>
+       <textarea class="form-textarea" id="f-audience" placeholder="Yaş, yaşam tarzı, değerler, coğrafya — ne kadar spesifik olursanız o kadar iyi." rows="2"></textarea>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-personality">
+        Markanızın kişiliğini nasıl tanımlarsınız?
+       </label>
+       <textarea class="form-textarea" id="f-personality" placeholder="örn. zarif ama sıcak, cesur ve özgün, sessiz lüks, oyuncu ve dürüst..." rows="2"></textarea>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-admire">
+        Hayran olduğunuz 3 marka (ve neden)
+       </label>
+       <textarea class="form-textarea" id="f-admire" placeholder="Sektörünüzden olmak zorunda değil. Onlarda neyi sevdiğinizi anlatın." rows="2"></textarea>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-feeling">
+        İnsanlar markanızla karşılaştığında ne hissettirmek istersiniz?
+       </label>
+       <textarea class="form-textarea" id="f-feeling" placeholder="İlk izlenim, duygusal tepki, kalıcı hafıza..." rows="2"></textarea>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-budget">
+        Bütçe Aralığı
+       </label>
+       <select class="form-select" id="f-budget">
+        <option value="">
+         Belirtmek istemiyorum
+        </option>
+        <option>
+         $3.000 altı
+        </option>
+        <option>
+         $3.000 – $7.000
+        </option>
+        <option>
+         $7.000 – $15.000
+        </option>
+        <option>
+         $15.000 – $30.000
+        </option>
+        <option>
+         $30.000 üzeri
+        </option>
+       </select>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-timeline">
+        Zaman Çizelgesi / Son Tarih
+       </label>
+       <input class="form-input" id="f-timeline" placeholder="örn. Eylül'de lansman, esnek, en kısa sürede..." type="text"/>
+      </div>
+      <div class="form-group">
+       <label class="form-label" id="fl-extra">
+        Bilmemizi istediğiniz başka bir şey var mı?
+       </label>
+       <textarea class="form-textarea" id="f-extra" placeholder="İlham kaynakları, referanslar, kısıtlamalar, beklentiler..." rows="3"></textarea>
+      </div>
+      <button class="submit-btn" id="con-submit" type="submit">
+       Gönder →
+      </button>
+     </form>
+    </div>
+   </div>
+  </div>
+  <script src="script.js">
+  </script>
+ </body>
+</html>
