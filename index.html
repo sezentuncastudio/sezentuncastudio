@@ -58,8 +58,8 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav);background:var(--paper
 .project-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s ease;display:block;}
 .project-card:hover .project-img-wrap img{transform:scale(1.04);}
 
-.project-overlay{position:absolute;inset:0;background:rgba(26,26,24,0);display:flex;flex-direction:column;justify-content:flex-end;padding:28px;opacity:0;transition:opacity 0.3s ease;}
-.project-card:hover .project-overlay{opacity:1;}
+.project-overlay{display:none;}
+
 .overlay-cat{font-family:var(--mono);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,246,242,0.65);margin-bottom:5px;}
 .overlay-name{font-family:var(--serif);font-size:28px;font-weight:300;color:#f7f6f2;line-height:1.05;}
 
@@ -1003,7 +1003,18 @@ const TR = {
   ],
   jrnHead:'Günlük', jrnSub:'Tasarım, marka ve yaratıcı<br>pratik üzerine düşünceler',
   conSec:'İletişim', conHead:'Birlikte kalıcı<br>bir şey<br><em>yaratalım</em>', conForm:'Proje Başlat', conSubmit:'Gönder →',
-  closeBtn:'Kapat ×'
+  closeBtn:'Kapat ×',
+  cats:{fleu:'Marka Kimliği · Ambalaj',bargozzy:'Marka Kimliği',beachyside:'Ambalaj Tasarımı',tanks:'Marka Kimliği',melez:'Ambalaj Tasarımı',bera:'Marka Kimliği',takecoff:'Ambalaj Tasarımı',handloom:'Art Direction',odetosun:'Ambalaj Tasarımı',fleim:'Marka Kimliği · Ambalaj',authenticseconds:'Marka Kimliği',trattoria:'Marka Kimliği',generation78:'Art Direction',ipekyol:'Art Direction',nidnoi:'Marka Kimliği',giselle:'Marka Kimliği'},
+  srvRows:[
+    {name:'Marka<br><em>Kimliği</em>',desc:'Logo, renk sistemi, tipografi ve markanın her temas noktasında nasıl göründüğünü ve hissettirdiğini belirleyen tüm görsel varlıklar.'},
+    {name:'Marka<br><em>Stratejisi</em>',desc:'Amaç, konumlandırma ve kişilik. Ne için durduğunuzu ve bunu nasıl tutarlı ve net biçimde ileteceğinizi birlikte belirliyoruz.'},
+    {name:'Ambalaj<br><em>Tasarımı</em>',desc:'Raflarda ve ellerde yaşayan etiket, kutu ve yapısal tasarım. Konseptten baskıya hazır dosyalara kadar üretim desteğiyle.'},
+    {name:'Art<br><em>Direction</em>',desc:'Kampanyalar, lookbook'lar ve editoryal projeler için görsel dil ve konsept. Tek bir kare oluşturulmadan önce hikâyeyi şekillendiriyoruz.'},
+    {name:'Özel<br><em>İllüstrasyon</em>',desc:'Ambalaj, editoryal ve marka anlatıları için el yapımı illüstrasyon. Her parça tam olarak sizin görsel dünyanıza göre üretilir.'},
+  ],
+  typeOpts:['Bir hizmet seçin','Marka Kimliği (logo, renk, tipografi, marka sistemi)','Marka Stratejisi (konumlandırma, mesaj, ses tonu)','Ambalaj Tasarımı','Art direction (kampanya, lookbook, editoryal)','Özel İllüstrasyon','Tam Marka — Kimlik + Strateji','Henüz emin değilim — konuşalım'],
+  stageOpts:['Birini seçin','Sıfırdan başlıyorum — henüz bir marka yok','Var olan markayı yenilemek istiyorum','Tam bir yeniden markalama','Belirli bir teslimat (ambalaj, kampanya vb.)'],
+  ph:{name:'Adınız',email:'e-posta@adresiniz.com',company:'Markanızın adı nedir?',about:'Markanız ne yapıyor? Kime hitap ediyor? Sizi farklı kılan ne?',audience:'Yaş, yaşam tarzı, değerler, coğrafya — ne kadar spesifik olursanız o kadar iyi.',personality:'örn. zarif ama sıcak, cesur ve özgün, sessiz lüks, oyuncu ve dürüst...',admire:'Sektörünüzden olmak zorunda değil. Onlarda neyi sevdiğinizi anlatın.',feeling:'İlk izlenim, duygusal tepki, kalıcı hafıza...',timeline:"örn. Eylül'de lansman, esnek, en kısa sürede...",extra:'İlham kaynakları, referanslar, kısıtlamalar, beklentiler...'}
 };
 const EN = {
   navWork:'Work', navAbout:'About', navServices:'Services', navContact:'Contact',
@@ -1026,7 +1037,18 @@ const EN = {
   ],
   jrnHead:'Journal', jrnSub:'Thoughts on design, brand,<br>and creative practice',
   conSec:'Get in Touch', conHead:"Let's make<br>something<br><em>worth keeping</em>", conForm:'Start a Project', conSubmit:'Send Questionnaire →',
-  closeBtn:'Close ×'
+  closeBtn:'Close ×',
+  cats:{fleu:'Brand Identity · Packaging',bargozzy:'Brand Identity',beachyside:'Packaging Design',tanks:'Brand Identity',melez:'Packaging Design',bera:'Brand Identity',takecoff:'Packaging Design',handloom:'Art Direction',odetosun:'Packaging Design',fleim:'Brand Identity · Packaging',authenticseconds:'Brand Identity',trattoria:'Brand Identity',generation78:'Art Direction',ipekyol:'Art Direction',nidnoi:'Brand Identity',giselle:'Brand Identity'},
+  srvRows:[
+    {name:'Brand<br><em>Identity</em>',desc:'Logo, colour system, typography and all visual assets defining how the brand looks and feels across every touchpoint.'},
+    {name:'Brand<br><em>Strategy</em>',desc:'Purpose, positioning and personality. We define what you stand for and how to communicate it consistently and clearly.'},
+    {name:'Packaging<br><em>Design</em>',desc:'Label, box and structural design that lives on shelves and in hands — from concept to print-ready files with production support.'},
+    {name:'Art<br><em>Direction</em>',desc:'Visual language and concept for campaigns, lookbooks and editorial projects. We shape the story before a single frame is captured.'},
+    {name:'Custom<br><em>Illustration</em>',desc:'Hand-crafted illustration for packaging, editorial and brand narratives. Each piece is made specifically for your visual world.'},
+  ],
+  typeOpts:['Select a service','Brand Identity (logo, colour, typography, brand system)','Brand Strategy (positioning, messaging, tone of voice)','Packaging Design','Art Direction (campaign, lookbook, editorial)','Custom Illustration','Full Brand — Identity + Strategy',"Not sure yet — let's talk"],
+  stageOpts:['Select one','Starting from scratch — no brand yet','Refreshing an existing brand','Full rebrand','A specific deliverable (packaging, campaign, etc.)'],
+  ph:{name:'Your name',email:'your@email.com',company:"What's your brand name?",about:'What does your brand do? Who is it for? What makes it different?',audience:'Age, lifestyle, values, geography — the more specific the better.',personality:'e.g. elegant but warm, bold and authentic, quiet luxury, playful and honest...',admire:"Doesn't have to be in your industry. Tell us what you love about them.",feeling:'First impression, emotional response, lasting memory...',timeline:'e.g. September launch, flexible, as soon as possible...',extra:"Inspiration, references, constraints, expectations..."}
 };
 
 function setLang(lang) {
@@ -1109,6 +1131,43 @@ function setLang(lang) {
   // Maps label
   const officeLabel = document.querySelector('#page-contact .sec-label[style*="margin-bottom:16px"]');
   if (officeLabel) officeLabel.textContent = lang === 'tr' ? 'Ofisimiz' : 'Our Office';
+  // Project card categories
+  document.querySelectorAll('.project-card').forEach(card => {
+    const m = (card.getAttribute('onclick')||'').match(/openDetail\('([^']+)'\)/);
+    if (m && l.cats && l.cats[m[1]]) {
+      const catEl = card.querySelector('.project-cat');
+      if (catEl) catEl.textContent = l.cats[m[1]];
+    }
+  });
+  // Service rows
+  if (l.srvRows) {
+    document.querySelectorAll('.service-row').forEach((row, i) => {
+      if (l.srvRows[i]) {
+        const nameEl = row.querySelector('.service-name');
+        const descEl = row.querySelector('.service-desc');
+        if (nameEl) nameEl.innerHTML = l.srvRows[i].name;
+        if (descEl) descEl.textContent = l.srvRows[i].desc;
+      }
+    });
+  }
+  // Select options
+  const typeSelect = document.getElementById('f-type');
+  if (typeSelect && l.typeOpts) {
+    const vals = ['', 'brand-identity', 'brand-strategy', 'packaging', 'art-direction', 'illustration', 'full-brand', 'unsure'];
+    typeSelect.innerHTML = l.typeOpts.map((t,i) => `<option value="${vals[i]||''}">${t}</option>`).join('');
+  }
+  const stageSelect = document.getElementById('f-stage');
+  if (stageSelect && l.stageOpts) {
+    stageSelect.innerHTML = l.stageOpts.map((t,i) => `<option value="${i===0?'':i}">${t}</option>`).join('');
+  }
+  // Placeholders
+  if (l.ph) {
+    const phMap = {name:'f-name',email:'f-email',company:'f-company',about:'f-about',audience:'f-audience',personality:'f-personality',admire:'f-admire',feeling:'f-feeling',timeline:'f-timeline',extra:'f-extra'};
+    Object.entries(phMap).forEach(([k,id]) => {
+      const el = document.getElementById(id);
+      if (el && l.ph[k]) el.placeholder = l.ph[k];
+    });
+  }
 }
 
 // Default: English
