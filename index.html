@@ -689,7 +689,7 @@ footer{background:var(--ink);color:var(--warm);padding:32px 48px;display:flex;ju
     <div class="contact-right" style="overflow-y:auto;max-height:calc(100vh - 72px);">
       <!-- Google Maps Embed -->
       <div style="margin-bottom:40px;border-bottom:0.5px solid var(--ink-faint);padding-bottom:40px;">
-        <span class="sec-label" style="display:block;margin-bottom:16px;">Ofisimiz</span>
+        <span class="sec-label" id="contact-office-label" style="display:block;margin-bottom:16px;">Ofisimiz</span>
         <div style="border-radius:2px;overflow:hidden;height:280px;">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d752.8!2d28.995905!3d41.051187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab09b0dc1352f%3A0x1230b892bff09cc6!2sHac%C4%B1%20Emin%20Efendi%20Sok.%20No%3A24!5e0!3m2!1str!2str!4v1"
@@ -702,53 +702,7 @@ footer{background:var(--ink);color:var(--warm);padding:32px 48px;display:flex;ju
           Teşvikiye / Şişli, İstanbul
         </p>
       </div>
-      <span class="sec-label" id="con-form-label">Start a Project</span>
-      <form class="contact-form" id="brand-form" onsubmit="sendBrandForm(event);" style="margin-top:20px;">
 
-        <div class="form-group"><label class="form-label" id="fl-name">AD SOYAD *</label><input class="form-input" id="f-name" type="text" placeholder="Adınız" required></div>
-        <div class="form-group"><label class="form-label" id="fl-email">E-POSTA *</label><input class="form-input" id="f-email" type="email" placeholder="e-posta@adresiniz.com" required></div>
-        <div class="form-group"><label class="form-label" id="fl-company">ŞİRKET / MARKA ADI</label><input class="form-input" id="f-company" type="text" placeholder="Markanızın adı nedir?"></div>
-        <div class="form-group"><label class="form-label" id="fl-website">WEB SİTESİ</label><input class="form-input" id="f-website" type="text" placeholder="websiteniz.com (varsa)"></div>
-        <div class="form-group"><label class="form-label" id="fl-type">NE TÜR BİR PROJE ARIYORSUNUZ? *</label>
-          <select class="form-select" id="f-type" required>
-            <option value="">Bir hizmet seçin</option>
-            <option>Marka Kimliği (logo, renk, tipografi, marka sistemi)</option>
-            <option>Marka Stratejisi (konumlandırma, mesaj, ses tonu)</option>
-            <option>Ambalaj Tasarımı</option>
-            <option>Art direction (kampanya, lookbook, editoryal)</option>
-            <option>Özel İllüstrasyon</option>
-            <option>Tam Marka — Kimlik + Strateji</option>
-            <option>Henüz emin değilim — konuşalım</option>
-          </select>
-        </div>
-        <div class="form-group"><label class="form-label" id="fl-about">MARKANIZ HAKKINDA ANLATIN</label><textarea class="form-textarea" id="f-about" rows="3" placeholder="Markanız ne yapıyor? Kime hitap ediyor? Sizi farklı kılan ne?"></textarea></div>
-        <div class="form-group"><label class="form-label" id="fl-stage">SÜREÇTE NEREDESİNİZ?</label>
-          <select class="form-select" id="f-stage">
-            <option value="">Birini seçin</option>
-            <option>Sıfırdan başlıyorum — henüz bir marka yok</option>
-            <option>Var olan markayı yenilemek istiyorum</option>
-            <option>Tam bir yeniden markalama</option>
-            <option>Belirli bir teslimat (ambalaj, kampanya vb.)</option>
-          </select>
-        </div>
-        <div class="form-group"><label class="form-label" id="fl-audience">HEDEF KİTLENİZ KİM?</label><textarea class="form-textarea" id="f-audience" rows="2" placeholder="Yaş, yaşam tarzı, değerler, coğrafya — ne kadar spesifik olursanız o kadar iyi."></textarea></div>
-        <div class="form-group"><label class="form-label" id="fl-personality">MARKANIZIN KİŞİLİĞİNİ NASIL TANIMLARSINIZ?</label><textarea class="form-textarea" id="f-personality" rows="2" placeholder="örn. zarif ama sıcak, cesur ve özgün, sessiz lüks, oyuncu ve dürüst..."></textarea></div>
-        <div class="form-group"><label class="form-label" id="fl-admire">HAYRAN OLDUĞUNUZ 3 MARKA (VE NEDEN)</label><textarea class="form-textarea" id="f-admire" rows="2" placeholder="Sektörünüzden olmak zorunda değil. Onlarda neyi sevdiğinizi anlatın."></textarea></div>
-        <div class="form-group"><label class="form-label" id="fl-feeling">İNSANLAR MARKANIZLA KARŞILAŞTIĞINDA NE HİSSETTİRMEK İSTERSİNİZ?</label><textarea class="form-textarea" id="f-feeling" rows="2" placeholder="İlk izlenim, duygusal tepki, kalıcı hafıza..."></textarea></div>
-        <div class="form-group"><label class="form-label" id="fl-budget">BÜTÇE ARALIĞI</label>
-          <select class="form-select" id="f-budget">
-            <option value="">Belirtmek istemiyorum</option>
-            <option>$3.000 altı</option>
-            <option>$3.000 – $7.000</option>
-            <option>$7.000 – $15.000</option>
-            <option>$15.000 – $30.000</option>
-            <option>$30.000 üzeri</option>
-          </select>
-        </div>
-        <div class="form-group"><label class="form-label" id="fl-timeline">ZAMAN ÇİZELGESİ / SON TARİH</label><input class="form-input" id="f-timeline" type="text" placeholder="örn. Eylül'de lansman, esnek, en kısa sürede..."></div>
-        <div class="form-group"><label class="form-label" id="fl-extra">BİLMEMİZİ İSTEDİĞİNİZ BAŞKA BİR ŞEY VAR MI?</label><textarea class="form-textarea" id="f-extra" rows="3" placeholder="İlham kaynakları, referanslar, kısıtlamalar, beklentiler..."></textarea></div>
-        <button class="submit-btn" type="submit" id="con-submit">Gönder →</button>
-      </form>
     </div>
   </div>
 </div>
@@ -1079,6 +1033,7 @@ const TR = {
   typeOpts:['Bir hizmet seçin','Marka Kimliği (logo, renk, tipografi, marka sistemi)','Marka Stratejisi (konumlandırma, mesaj, ses tonu)','Ambalaj Tasarımı','Art direction (kampanya, lookbook, editoryal)','Özel İllüstrasyon','Tam Marka — Kimlik + Strateji','Henüz emin değilim — konuşalım'],
   stageOpts:['Birini seçin','Sıfırdan başlıyorum — henüz bir marka yok','Var olan markayı yenilemek istiyorum','Tam bir yeniden markalama','Belirli bir teslimat (ambalaj, kampanya vb.)'],
   budgetOpts:['Belirtmek istemiyorum','$3.000 altı','$3.000 – $7.000','$7.000 – $15.000','$15.000 – $30.000','$30.000 üzeri'],
+  heroBtn:'Birlikte Çalışalım →',
   ph:{name:'Adınız',email:'e-posta@adresiniz.com',company:'Markanızın adı nedir?',website:'websiteniz.com (varsa)',about:'Markanız ne yapıyor? Kime hitap ediyor? Sizi farklı kılan ne?',audience:'Yaş, yaşam tarzı, değerler, coğrafya — ne kadar spesifik olursanız o kadar iyi.',personality:'örn. zarif ama sıcak, cesur ve özgün, sessiz lüks, oyuncu ve dürüst...',admire:'Sektörünüzden olmak zorunda değil. Onlarda neyi sevdiğinizi anlatın.',feeling:'İlk izlenim, duygusal tepki, kalıcı hafıza...',timeline:"örn. Eylül'de lansman, esnek, en kısa sürede...",extra:'İlham kaynakları, referanslar, kısıtlamalar, beklentiler...'}
 };
 const EN = {
@@ -1114,6 +1069,7 @@ const EN = {
   typeOpts:['Select a service','Brand Identity (logo, colour, typography, brand system)','Brand Strategy (positioning, messaging, tone of voice)','Packaging Design','Art Direction (campaign, lookbook, editorial)','Custom Illustration','Full Brand — Identity + Strategy',"Not sure yet — let's talk"],
   stageOpts:['Select one','Starting from scratch — no brand yet','Refreshing an existing brand','Full rebrand','A specific deliverable (packaging, campaign, etc.)'],
   budgetOpts:['Prefer not to say','Under $3,000','$3,000 – $7,000','$7,000 – $15,000','$15,000 – $30,000','Over $30,000'],
+  heroBtn:'Let’s Work Together →',
   ph:{name:'Your name',email:'your@email.com',company:"What's your brand name?",website:'yourwebsite.com (optional)',about:'What does your brand do? Who is it for? What makes it different?',audience:'Age, lifestyle, values, geography — the more specific the better.',personality:'e.g. elegant but warm, bold and authentic, quiet luxury, playful and honest...',admire:"Doesn't have to be in your industry. Tell us what you love about them.",feeling:'First impression, emotional response, lasting memory...',timeline:'e.g. September launch, flexible, as soon as possible...',extra:"Inspiration, references, constraints, expectations..."}
 };
 
@@ -1159,10 +1115,11 @@ function setLang(lang) {
   if (jrnH) jrnH.textContent = l.jrnHead;
   const jrnS = document.getElementById('jrn-sub');
   if (jrnS) jrnS.innerHTML = l.jrnSub;
+  const heroBtn = document.getElementById('hero-letswork');
+  if (heroBtn && l.heroBtn) heroBtn.textContent = l.heroBtn;
   document.getElementById('con-sec').textContent = l.conSec;
   document.getElementById('con-headline').innerHTML = l.conHead;
-  document.getElementById('con-form-label').textContent = l.conForm;
-  document.getElementById('con-submit').textContent = l.conSubmit;
+  // form removed in v2 — con-form-label / con-submit no longer in DOM
   document.getElementById('detail-close-btn').textContent = l.closeBtn;
   // Form labels
   const fl = {
@@ -1558,13 +1515,7 @@ function toggleService(el, val){
   }
 }
 
-// Update Let's Work button text with lang
-const _origSetLang = typeof setLang === 'function' ? setLang : null;
-function setLang(lang){
-  if(_origSetLang) _origSetLang(lang);
-  const btn = document.getElementById('hero-letswork');
-  if(btn) btn.textContent = lang==='en' ? 'Let\u2019s Work Together \u2192' : 'Birlikte \u00c7al\u0131\u015falım \u2192';
-}
+
 </script>
 
 </body>
