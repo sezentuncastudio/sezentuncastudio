@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Client Portal — Sezen Tunca Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1a18;--ink-mid:#6b6b66;--ink-faint:#8a8a84;
+  --paper:#f7f6f2;--warm:#efede6;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --mono:'DM Mono',monospace;--sans:'Outfit',system-ui,sans-serif;
+  --nav:64px;--sidebar:240px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;}
+
+/* ── LOGIN ── */
+#view-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px 24px;}
+.login-logo{font-family:var(--serif);font-size:22px;font-weight:300;letter-spacing:0.04em;margin-bottom:64px;text-align:center;}
+.login-logo span{display:block;font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mid);margin-top:4px;}
+.login-box{width:100%;max-width:400px;}
+.login-title{font-family:var(--serif);font-size:32px;font-weight:300;font-style:italic;margin-bottom:8px;}
+.login-sub{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--ink-mid);text-transform:uppercase;margin-bottom:40px;}
+.login-field{margin-bottom:20px;}
+.login-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mid);display:block;margin-bottom:8px;}
+.login-input{width:100%;background:transparent;border:none;border-bottom:0.5px solid var(--ink);padding:10px 0;font-family:var(--sans);font-size:15px;font-weight:300;color:var(--ink);outline:none;transition:border-color 0.2s;}
+.login-input:focus{border-bottom-color:var(--ink);border-bottom-width:1px;}
+.login-input::placeholder{color:var(--ink-faint);}
+.login-btn{width:100%;margin-top:32px;background:var(--ink);color:var(--paper);border:none;padding:16px 32px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;}
+.login-btn:hover{opacity:0.8;}
+.login-err{font-family:var(--mono);font-size:10px;color:#c0392b;letter-spacing:0.08em;margin-top:12px;display:none;}
+
+/* ── PORTAL SHELL ── */
+#view-portal{display:none;height:100vh;overflow:hidden;}
+
+/* Top nav */
+.p-nav{position:fixed;top:0;left:0;right:0;height:var(--nav);background:var(--paper);border-bottom:0.5px solid rgba(26,26,24,0.15);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:100;}
+.p-nav-logo{font-family:var(--serif);font-size:18px;font-weight:300;letter-spacing:0.03em;}
+.p-nav-logo span{font-family:var(--mono);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-mid);margin-left:12px;}
+.p-nav-right{display:flex;align-items:center;gap:24px;}
+.p-nav-client{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mid);}
+.p-nav-out{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:none;border:0.5px solid var(--ink-mid);color:var(--ink-mid);padding:6px 14px;cursor:pointer;transition:all 0.2s;}
+.p-nav-out:hover{border-color:var(--ink);color:var(--ink);}
+
+/* Layout */
+.p-layout{display:flex;padding-top:var(--nav);height:100vh;}
+
+/* Sidebar */
+.p-sidebar{width:var(--sidebar);border-right:0.5px solid rgba(26,26,24,0.12);padding:40px 0;flex-shrink:0;overflow-y:auto;}
+.p-sidebar-label{font-family:var(--mono);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-faint);padding:0 28px;margin-bottom:12px;margin-top:28px;}
+.p-sidebar-label:first-child{margin-top:0;}
+.p-nav-item{display:flex;align-items:center;gap:12px;padding:10px 28px;font-family:var(--sans);font-size:13px;font-weight:300;color:var(--ink-mid);cursor:pointer;transition:all 0.15s;border-left:2px solid transparent;text-decoration:none;}
+.p-nav-item:hover{color:var(--ink);background:var(--warm);}
+.p-nav-item.active{color:var(--ink);border-left-color:var(--ink);background:var(--warm);}
+.p-nav-item svg{width:14px;height:14px;flex-shrink:0;opacity:0.6;}
+.p-nav-item.active svg{opacity:1;}
+
+/* Main content */
+.p-main{flex:1;overflow-y:auto;padding:48px 56px;}
+
+/* ── SHARED COMPONENTS ── */
+.p-page{display:none;}
+.p-page.active{display:block;}
+
+.p-header{margin-bottom:40px;}
+.p-header-label{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:10px;}
+.p-header-title{font-family:var(--serif);font-size:42px;font-weight:300;font-style:italic;line-height:1.15;}
+.p-header-title em{font-style:normal;font-weight:400;}
+
+.p-divider{border:none;border-top:0.5px solid rgba(26,26,24,0.15);margin:32px 0;}
+
+/* Cards */
+.p-card{background:#fff;border:0.5px solid rgba(26,26,24,0.1);padding:28px 32px;margin-bottom:16px;}
+.p-card-label{font-family:var(--mono);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:8px;}
+.p-card-value{font-family:var(--sans);font-size:15px;font-weight:300;}
+.p-card-big{font-family:var(--serif);font-size:28px;font-weight:300;font-style:italic;}
+
+/* Grid */
+.p-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.p-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;}
+@media(max-width:900px){.p-grid-2,.p-grid-3{grid-template-columns:1fr;}}
+
+/* Status badge */
+.status{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:0.5px solid;}
+.status-active{color:#2d6a4f;border-color:#2d6a4f;background:rgba(45,106,79,0.06);}
+.status-pending{color:#7b5e2a;border-color:#7b5e2a;background:rgba(123,94,42,0.06);}
+.status-done{color:var(--ink-mid);border-color:var(--ink-mid);background:transparent;}
+.status-dot{width:5px;height:5px;border-radius:50%;background:currentColor;}
+
+/* Progress bar */
+.p-progress-wrap{margin:24px 0;}
+.p-progress-label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:8px;}
+.p-progress-bar{height:2px;background:rgba(26,26,24,0.1);position:relative;}
+.p-progress-fill{height:100%;background:var(--ink);transition:width 0.4s ease;}
+
+/* Timeline */
+.timeline{list-style:none;}
+.timeline-item{display:flex;gap:20px;padding-bottom:28px;position:relative;}
+.timeline-item:last-child{padding-bottom:0;}
+.timeline-item::before{content:'';position:absolute;left:7px;top:14px;bottom:0;width:0.5px;background:rgba(26,26,24,0.15);}
+.timeline-item:last-child::before{display:none;}
+.timeline-dot{width:15px;height:15px;border-radius:50%;border:0.5px solid var(--ink);background:var(--paper);flex-shrink:0;margin-top:2px;position:relative;z-index:1;}
+.timeline-dot.filled{background:var(--ink);}
+.timeline-dot.active{background:var(--paper);border-width:2px;box-shadow:0 0 0 3px rgba(26,26,24,0.1);}
+.timeline-content{}
+.timeline-title{font-family:var(--sans);font-size:14px;font-weight:400;margin-bottom:2px;}
+.timeline-date{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--ink-mid);}
+.timeline-note{font-family:var(--sans);font-size:13px;font-weight:300;color:var(--ink-mid);margin-top:4px;}
+
+/* File list */
+.file-row{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:0.5px solid rgba(26,26,24,0.1);}
+.file-row:last-child{border-bottom:none;}
+.file-icon{width:36px;height:36px;background:var(--warm);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.file-icon svg{width:16px;height:16px;}
+.file-info{flex:1;}
+.file-name{font-family:var(--sans);font-size:14px;font-weight:300;}
+.file-meta{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--ink-mid);}
+.file-dl{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:none;border:0.5px solid var(--ink-mid);color:var(--ink-mid);padding:6px 14px;cursor:pointer;white-space:nowrap;transition:all 0.2s;text-decoration:none;}
+.file-dl:hover{border-color:var(--ink);color:var(--ink);}
+
+/* Meeting row */
+.meeting-row{display:flex;gap:24px;align-items:flex-start;padding:20px 0;border-bottom:0.5px solid rgba(26,26,24,0.1);}
+.meeting-row:last-child{border-bottom:none;}
+.meeting-date-box{width:52px;text-align:center;flex-shrink:0;}
+.meeting-day{font-family:var(--serif);font-size:32px;font-weight:300;line-height:1;font-style:italic;}
+.meeting-month{font-family:var(--mono);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-mid);}
+.meeting-info{flex:1;}
+.meeting-title{font-family:var(--sans);font-size:15px;font-weight:400;margin-bottom:4px;}
+.meeting-meta{font-family:var(--mono);font-size:10px;letter-spacing:0.07em;color:var(--ink-mid);margin-bottom:6px;}
+.meeting-join{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;background:var(--ink);color:var(--paper);border:none;padding:7px 16px;cursor:pointer;text-decoration:none;display:inline-block;}
+
+/* Message thread */
+.msg-thread{display:flex;flex-direction:column;gap:16px;margin-bottom:28px;max-height:320px;overflow-y:auto;padding-right:4px;}
+.msg-bubble{max-width:78%;padding:14px 18px;}
+.msg-bubble.from-studio{background:var(--ink);color:var(--paper);align-self:flex-start;}
+.msg-bubble.from-client{background:var(--warm);color:var(--ink);align-self:flex-end;border:0.5px solid rgba(26,26,24,0.1);}
+.msg-sender{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.6;margin-bottom:6px;}
+.msg-text{font-family:var(--sans);font-size:14px;font-weight:300;line-height:1.55;}
+.msg-time{font-family:var(--mono);font-size:9px;letter-spacing:0.06em;opacity:0.5;margin-top:6px;text-align:right;}
+.msg-input-wrap{display:flex;gap:0;border:0.5px solid rgba(26,26,24,0.3);}
+.msg-input{flex:1;background:transparent;border:none;padding:12px 16px;font-family:var(--sans);font-size:14px;font-weight:300;outline:none;color:var(--ink);}
+.msg-send{background:var(--ink);color:var(--paper);border:none;padding:12px 20px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;}
+
+/* Brief viewer */
+.brief-section{margin-bottom:32px;}
+.brief-section-title{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:14px;padding-bottom:8px;border-bottom:0.5px solid rgba(26,26,24,0.15);}
+.brief-row{display:flex;gap:16px;margin-bottom:10px;font-size:14px;}
+.brief-key{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--ink-mid);min-width:180px;padding-top:2px;}
+.brief-val{font-family:var(--sans);font-weight:300;flex:1;}
+
+/* Notification dot */
+.notif{display:inline-flex;width:16px;height:16px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:9px;align-items:center;justify-content:center;border-radius:50%;margin-left:auto;}
+</style>
+</head>
+<body>
+
+<!-- ─────────────────────────────────────────────
+     LOGIN VIEW
+───────────────────────────────────────────── -->
+<div id="view-login">
+  <div class="login-logo">
+    Sezen Tunca Studio
+    <span>Client Portal</span>
+  </div>
+
+  <div class="login-box">
+    <p class="login-title">Hoş geldiniz</p>
+    <p class="login-sub">Projenize erişmek için giriş yapın</p>
+
+    <div class="login-field">
+      <label class="login-label">E-posta</label>
+      <input class="login-input" id="login-email" type="email" placeholder="ornek@email.com" autocomplete="email">
+    </div>
+    <div class="login-field">
+      <label class="login-label">Şifre</label>
+      <input class="login-input" id="login-pass" type="password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Giriş Yap →</button>
+    <p class="login-err" id="login-err">E-posta veya şifre hatalı.</p>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────────
+     PORTAL SHELL
+───────────────────────────────────────────── -->
+<div id="view-portal">
+
+  <!-- Top nav -->
+  <div class="p-nav">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="p-nav-logo">Sezen Tunca Studio <span>Client Portal</span></div>
+    </div>
+    <div class="p-nav-right">
+      <span class="p-nav-client" id="portal-client-name">—</span>
+      <button class="p-nav-out" onclick="doLogout()">Çıkış</button>
+    </div>
+  </div>
+
+  <div class="p-layout">
+
+    <!-- Sidebar -->
+    <nav class="p-sidebar">
+      <div class="p-sidebar-label">Genel Bakış</div>
+      <a class="p-nav-item active" onclick="showTab('dashboard')" href="#">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1" y="1" width="6" height="6"/><rect x="9" y="1" width="6" height="6"/><rect x="1" y="9" width="6" height="6"/><rect x="9" y="9" width="6" height="6"/></svg>
+        Dashboard
+      </a>
+
+      <div class="p-sidebar-label">Proje</div>
+      <a class="p-nav-item" onclick="showTab('brief')" href="#">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="1" width="12" height="14" rx="1"/><line x1="5" y1="5" x2="11" y2="5"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="5" y1="11" x2="9" y2="11"/></svg>
+        Proje Brief
+      </a>
+      <a class="p-nav-item" onclick="showTab('timeline')" href="#">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8" cy="8" r="6.5"/><polyline points="8,4 8,8 11,10"/></svg>
+        Süreç &amp; Takvim
+      </a>
+      <a class="p-nav-item" onclick="showTab('files')" href="#">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 2h7l3 3v9H2z"/><polyline points="9,2 9,5 12,5"/></svg>
+        Dosyalar
+        <span class="notif">3</span>
+      </a>
+
+      <div class="p-sidebar-label">İletişim</div>
+      <a class="p-nav-item" onclick="showTab('meetings')" href="#">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1" y="3" width="14" height="12" rx="1"/><line x1="5" y1="1" x2="5" y2="5"/><line x1="11" y1="1" x2="11" y2="5"/><line x1="1" y1="7" x2="15" y2="7"/></svg>
+        Toplantılar
+      </a>
+      <a class="p-nav-item" onclick="showTab('messages')" href="#">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 2h14v10H9l-4 3v-3H1z"/></svg>
+        Mesajlar
+        <span class="notif">1</span>
+      </a>
+
+      <div class="p-sidebar-label">Hesap</div>
+      <a class="p-nav-item" onclick="showTab('invoice')" href="#">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="1" width="12" height="14" rx="1"/><line x1="5" y1="6" x2="11" y2="6"/><line x1="5" y1="9" x2="8" y2="9"/></svg>
+        Fatura &amp; Sözleşme
+      </a>
+    </nav>
+
+    <!-- Main -->
+    <main class="p-main">
+
+      <!-- ── DASHBOARD ── -->
+      <div class="p-page active" id="tab-dashboard">
+        <div class="p-header">
+          <p class="p-header-label">Genel Bakış</p>
+          <h1 class="p-header-title">Merhaba, <em id="dash-name">—</em></h1>
+        </div>
+
+        <div class="p-grid-3">
+          <div class="p-card">
+            <p class="p-card-label">Proje</p>
+            <p class="p-card-big">Marka Kimliği</p>
+          </div>
+          <div class="p-card">
+            <p class="p-card-label">Durum</p>
+            <p class="p-card-value" style="margin-top:4px;"><span class="status status-active"><span class="status-dot"></span>Aktif</span></p>
+          </div>
+          <div class="p-card">
+            <p class="p-card-label">Sonraki Toplantı</p>
+            <p class="p-card-big">28 Mayıs</p>
+            <p class="p-card-value" style="font-size:13px;color:var(--ink-mid);margin-top:4px;">Konsept Sunumu — 14:00</p>
+          </div>
+        </div>
+
+        <div class="p-card">
+          <p class="p-card-label">Proje İlerlemesi</p>
+          <div class="p-progress-wrap">
+            <div class="p-progress-label"><span>Keşif &amp; Strateji</span><span>Tamamlandı</span></div>
+            <div class="p-progress-bar"><div class="p-progress-fill" style="width:100%"></div></div>
+          </div>
+          <div class="p-progress-wrap">
+            <div class="p-progress-label"><span>Konsept Geliştirme</span><span>%60</span></div>
+            <div class="p-progress-bar"><div class="p-progress-fill" style="width:60%"></div></div>
+          </div>
+          <div class="p-progress-wrap">
+            <div class="p-progress-label"><span>Tasarım &amp; Revizyon</span><span>Başlamadı</span></div>
+            <div class="p-progress-bar"><div class="p-progress-fill" style="width:0%"></div></div>
+          </div>
+          <div class="p-progress-wrap" style="margin-bottom:0;">
+            <div class="p-progress-label"><span>Final Teslimat</span><span>Başlamadı</span></div>
+            <div class="p-progress-bar"><div class="p-progress-fill" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <div class="p-grid-2" style="margin-top:16px;">
+          <div class="p-card" style="cursor:pointer;" onclick="showTab('files')">
+            <p class="p-card-label">Son Yüklenen Dosya</p>
+            <p class="p-card-value" style="margin-top:6px;">Moodboard_v2.pdf</p>
+            <p class="p-card-value" style="font-size:12px;color:var(--ink-mid);margin-top:4px;">Studio tarafından — 12 Mayıs</p>
+          </div>
+          <div class="p-card" style="cursor:pointer;" onclick="showTab('messages')">
+            <p class="p-card-label">Son Mesaj</p>
+            <p class="p-card-value" style="margin-top:6px;">"Moodboard'u incelemenizi bekliyoruz..."</p>
+            <p class="p-card-value" style="font-size:12px;color:var(--ink-mid);margin-top:4px;">Sezen — 12 Mayıs</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── BRIEF ── -->
+      <div class="p-page" id="tab-brief">
+        <div class="p-header">
+          <p class="p-header-label">Proje</p>
+          <h1 class="p-header-title">Proje <em>Brief'i</em></h1>
+        </div>
+
+        <div class="p-card">
+          <div class="brief-section">
+            <p class="brief-section-title">Marka Bilgileri</p>
+            <div class="brief-row"><span class="brief-key">Şirket / Marka Adı</span><span class="brief-val">[Müşteri Marka Adı]</span></div>
+            <div class="brief-row"><span class="brief-key">Sektör</span><span class="brief-val">Yaşam tarzı & wellness</span></div>
+            <div class="brief-row"><span class="brief-key">Konum</span><span class="brief-val">İstanbul, Türkiye</span></div>
+            <div class="brief-row"><span class="brief-key">Web Sitesi</span><span class="brief-val">—</span></div>
+          </div>
+          <div class="brief-section">
+            <p class="brief-section-title">Proje Kapsamı</p>
+            <div class="brief-row"><span class="brief-key">Hizmet</span><span class="brief-val">Marka Kimliği (logo, renk, tipografi, marka sistemi)</span></div>
+            <div class="brief-row"><span class="brief-key">Aşama</span><span class="brief-val">Sıfırdan başlıyorum — henüz bir marka yok</span></div>
+            <div class="brief-row"><span class="brief-key">Bütçe Aralığı</span><span class="brief-val">$7.000 – $15.000</span></div>
+            <div class="brief-row"><span class="brief-key">Takvim</span><span class="brief-val">Temmuz 2025 lansmanı</span></div>
+          </div>
+          <div class="brief-section">
+            <p class="brief-section-title">Marka Yönelimi</p>
+            <div class="brief-row"><span class="brief-key">Hedef Kitle</span><span class="brief-val">25–40 yaş, şehirli, bilinçli tüketici, kadın ağırlıklı</span></div>
+            <div class="brief-row"><span class="brief-key">Marka Kişiliği</span><span class="brief-val">Sakin, özgün, hassas — güçlü ama sessiz bir lüks</span></div>
+            <div class="brief-row"><span class="brief-key">Hayran Olunan Markalar</span><span class="brief-val">Aesop, Kinfolk, Veja</span></div>
+            <div class="brief-row"><span class="brief-key">Hissettirmek İstenen</span><span class="brief-val">Güven, sadelik, kalite hissi — ilk bakışta anlaşılan bir dil</span></div>
+          </div>
+          <div class="brief-section" style="margin-bottom:0;">
+            <p class="brief-section-title">Ek Notlar</p>
+            <div class="brief-row"><span class="brief-key">Notlar</span><span class="brief-val">Ambalaj tasarımı ilerleyen süreçte eklenebilir. Önce kimlik sağlamlaştırılmalı.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TIMELINE ── -->
+      <div class="p-page" id="tab-timeline">
+        <div class="p-header">
+          <p class="p-header-label">Proje</p>
+          <h1 class="p-header-title">Süreç &amp; <em>Takvim</em></h1>
+        </div>
+
+        <div class="p-card" style="margin-bottom:16px;">
+          <p class="p-card-label" style="margin-bottom:20px;">Proje Adımları</p>
+          <ul class="timeline">
+            <li class="timeline-item">
+              <div class="timeline-dot filled"></div>
+              <div class="timeline-content">
+                <p class="timeline-title">Teklif Onayı &amp; Sözleşme</p>
+                <p class="timeline-date">1 Nisan 2025</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-dot filled"></div>
+              <div class="timeline-content">
+                <p class="timeline-title">Proje Brief &amp; Keşif Toplantısı</p>
+                <p class="timeline-date">8 Nisan 2025</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-dot filled"></div>
+              <div class="timeline-content">
+                <p class="timeline-title">Moodboard &amp; Strateji Onayı</p>
+                <p class="timeline-date">22 Nisan 2025</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-dot active"></div>
+              <div class="timeline-content">
+                <p class="timeline-title" style="font-weight:400;">Konsept Geliştirme <span class="status status-active" style="margin-left:8px;font-size:9px;">Devam ediyor</span></p>
+                <p class="timeline-date">6 Mayıs – 28 Mayıs 2025</p>
+                <p class="timeline-note">İlk konsept sunumu 28 Mayıs'ta.</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <p class="timeline-title" style="color:var(--ink-mid);">Konsept Sunum &amp; Geri Bildirim</p>
+                <p class="timeline-date">28 Mayıs 2025</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <p class="timeline-title" style="color:var(--ink-mid);">Revizyon Turu</p>
+                <p class="timeline-date">Haziran 2025</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <p class="timeline-title" style="color:var(--ink-mid);">Final Onay</p>
+                <p class="timeline-date">Haziran sonu</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <p class="timeline-title" style="color:var(--ink-mid);">Teslimat &amp; Handoff</p>
+                <p class="timeline-date">Temmuz 2025</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ── FILES ── -->
+      <div class="p-page" id="tab-files">
+        <div class="p-header">
+          <p class="p-header-label">Proje</p>
+          <h1 class="p-header-title">Dosya <em>Paylaşımı</em></h1>
+        </div>
+
+        <div class="p-card">
+          <p class="p-card-label" style="margin-bottom:16px;">Studio'dan Gelen Dosyalar</p>
+          <div class="file-row">
+            <div class="file-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 2h7l3 3v9H2z"/><polyline points="9,2 9,5 12,5"/></svg>
+            </div>
+            <div class="file-info">
+              <p class="file-name">Moodboard_v2.pdf</p>
+              <p class="file-meta">PDF · 4.2 MB · 12 Mayıs 2025 · <strong style="color:#2d6a4f;">Yeni</strong></p>
+            </div>
+            <a class="file-dl" href="#">İndir</a>
+          </div>
+          <div class="file-row">
+            <div class="file-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 2h7l3 3v9H2z"/><polyline points="9,2 9,5 12,5"/></svg>
+            </div>
+            <div class="file-info">
+              <p class="file-name">Strateji_Belgesi_v1.pdf</p>
+              <p class="file-meta">PDF · 1.8 MB · 22 Nisan 2025 · <strong style="color:#2d6a4f;">Yeni</strong></p>
+            </div>
+            <a class="file-dl" href="#">İndir</a>
+          </div>
+          <div class="file-row">
+            <div class="file-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1" y="3" width="14" height="10" rx="1"/><polyline points="1,3 8,9 15,3"/></svg>
+            </div>
+            <div class="file-info">
+              <p class="file-name">Teklif_STS_2025.pdf</p>
+              <p class="file-meta">PDF · 0.6 MB · 28 Mart 2025</p>
+            </div>
+            <a class="file-dl" href="#">İndir</a>
+          </div>
+        </div>
+
+        <div class="p-card" style="margin-top:16px;">
+          <p class="p-card-label" style="margin-bottom:16px;">Sizden Beklenen İçerikler</p>
+          <div class="file-row">
+            <div class="file-icon" style="background:#fff3cd;">
+              <svg viewBox="0 0 16 16" fill="none" stroke="#7b5e2a" stroke-width="1.2"><path d="M2 2h7l3 3v9H2z"/><line x1="8" y1="7" x2="8" y2="11"/><circle cx="8" cy="13" r="0.5" fill="#7b5e2a"/></svg>
+            </div>
+            <div class="file-info">
+              <p class="file-name">Referans Görseller &amp; İlham Kaynakları</p>
+              <p class="file-meta" style="color:#7b5e2a;">Bekleniyor — Google Drive linki paylaşabilirsiniz</p>
+            </div>
+            <button class="file-dl" onclick="alert('Bu özellik yakında aktif olacak.')">Yükle</button>
+          </div>
+          <div class="file-row">
+            <div class="file-icon" style="background:#fff3cd;">
+              <svg viewBox="0 0 16 16" fill="none" stroke="#7b5e2a" stroke-width="1.2"><path d="M2 2h7l3 3v9H2z"/><line x1="8" y1="7" x2="8" y2="11"/><circle cx="8" cy="13" r="0.5" fill="#7b5e2a"/></svg>
+            </div>
+            <div class="file-info">
+              <p class="file-name">Logo &amp; Mevcut Marka Materyalleri (varsa)</p>
+              <p class="file-meta" style="color:#7b5e2a;">Bekleniyor</p>
+            </div>
+            <button class="file-dl" onclick="alert('Bu özellik yakında aktif olacak.')">Yükle</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── MEETINGS ── -->
+      <div class="p-page" id="tab-meetings">
+        <div class="p-header">
+          <p class="p-header-label">İletişim</p>
+          <h1 class="p-header-title">Toplantı <em>Takvimi</em></h1>
+        </div>
+
+        <div class="p-card">
+          <p class="p-card-label" style="margin-bottom:20px;">Yaklaşan Toplantılar</p>
+          <div class="meeting-row">
+            <div class="meeting-date-box">
+              <p class="meeting-day">28</p>
+              <p class="meeting-month">Mayıs</p>
+            </div>
+            <div class="meeting-info">
+              <p class="meeting-title">Konsept Sunumu</p>
+              <p class="meeting-meta">Çarşamba · 14:00–15:30 · Google Meet</p>
+              <p class="meeting-meta" style="margin-bottom:10px;">İlk konsept yönlerini birlikte değerlendireceğiz. Üç ayrı yön sunulacak.</p>
+              <a class="meeting-join" href="#" onclick="alert('Toplantı bağlantısı toplantıdan 1 gün önce paylaşılacak.')">Bağlantıya Katıl</a>
+            </div>
+          </div>
+          <div class="meeting-row">
+            <div class="meeting-date-box">
+              <p class="meeting-day">18</p>
+              <p class="meeting-month">Haz</p>
+            </div>
+            <div class="meeting-info">
+              <p class="meeting-title">Revizyon Geri Bildirim Toplantısı</p>
+              <p class="meeting-meta">Çarşamba · 15:00–16:00 · Google Meet</p>
+              <p class="meeting-meta" style="margin-bottom:10px;">Seçilen konsept üzerinden yapılan revizyonları değerlendireceğiz.</p>
+              <span class="status status-pending"><span class="status-dot"></span>Onay Bekliyor</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-card" style="margin-top:16px;">
+          <p class="p-card-label" style="margin-bottom:20px;">Geçmiş Toplantılar</p>
+          <div class="meeting-row" style="opacity:0.6;">
+            <div class="meeting-date-box">
+              <p class="meeting-day">8</p>
+              <p class="meeting-month">Nis</p>
+            </div>
+            <div class="meeting-info">
+              <p class="meeting-title">Keşif &amp; Brief Toplantısı</p>
+              <p class="meeting-meta">Salı · 11:00–12:00 · Google Meet</p>
+              <span class="status status-done">Tamamlandı</span>
+            </div>
+          </div>
+          <div class="meeting-row" style="opacity:0.6;">
+            <div class="meeting-date-box">
+              <p class="meeting-day">22</p>
+              <p class="meeting-month">Nis</p>
+            </div>
+            <div class="meeting-info">
+              <p class="meeting-title">Moodboard &amp; Strateji Sunumu</p>
+              <p class="meeting-meta">Salı · 14:00–15:00 · Google Meet</p>
+              <span class="status status-done">Tamamlandı</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── MESSAGES ── -->
+      <div class="p-page" id="tab-messages">
+        <div class="p-header">
+          <p class="p-header-label">İletişim</p>
+          <h1 class="p-header-title">Studio ile <em>Mesajlaşın</em></h1>
+        </div>
+
+        <div class="p-card">
+          <div class="msg-thread" id="msg-thread">
+            <div class="msg-bubble from-studio">
+              <p class="msg-sender">Sezen Tunca Studio</p>
+              <p class="msg-text">Merhaba! Sizi portalımıza hoş geldiniz. Keşif toplantısından sonraki notlarımızı sisteme ekledik. Herhangi bir sorunuz olursa buradan ulaşabilirsiniz.</p>
+              <p class="msg-time">8 Nisan, 12:30</p>
+            </div>
+            <div class="msg-bubble from-client">
+              <p class="msg-sender">Siz</p>
+              <p class="msg-text">Teşekkürler! Strateji belgesi çok netleştirici olmuş, inceledim. Renk paletinde daha toprak tonları düşünebilir miyiz?</p>
+              <p class="msg-time">24 Nisan, 17:15</p>
+            </div>
+            <div class="msg-bubble from-studio">
+              <p class="msg-sender">Sezen Tunca Studio</p>
+              <p class="msg-text">Kesinlikle! Toprak tonları zaten moodboard'da ağırlıklı tutmuştuk. Konsept sunumunda bunu daha belirgin göreceksiniz. Moodboard_v2.pdf'i incelediniz mi?</p>
+              <p class="msg-time">12 Mayıs, 10:02</p>
+            </div>
+          </div>
+          <div class="msg-input-wrap">
+            <input class="msg-input" id="msg-input" type="text" placeholder="Mesajınızı yazın...">
+            <button class="msg-send" onclick="sendMsg()">Gönder</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── INVOICE ── -->
+      <div class="p-page" id="tab-invoice">
+        <div class="p-header">
+          <p class="p-header-label">Hesap</p>
+          <h1 class="p-header-title">Fatura &amp; <em>Sözleşme</em></h1>
+        </div>
+
+        <div class="p-grid-2">
+          <div class="p-card">
+            <p class="p-card-label">Sözleşme</p>
+            <p class="p-card-value" style="margin-top:8px;margin-bottom:16px;">Sözleşme 1 Nisan 2025 tarihinde imzalanmıştır.</p>
+            <span class="status status-active"><span class="status-dot"></span>İmzalandı</span>
+          </div>
+          <div class="p-card">
+            <p class="p-card-label">Toplam Proje Bedeli</p>
+            <p class="p-card-big">$9.500</p>
+            <p class="p-card-value" style="font-size:13px;color:var(--ink-mid);margin-top:4px;">KDV dahil değildir</p>
+          </div>
+        </div>
+
+        <div class="p-card" style="margin-top:0;">
+          <p class="p-card-label" style="margin-bottom:20px;">Ödeme Planı</p>
+          <div class="file-row">
+            <div class="file-info">
+              <p class="file-name">Depozito — %40</p>
+              <p class="file-meta">$3.800 · Proje başlangıcında · 1 Nisan 2025</p>
+            </div>
+            <span class="status status-done">Ödendi</span>
+          </div>
+          <div class="file-row">
+            <div class="file-info">
+              <p class="file-name">Ara Ödeme — %30</p>
+              <p class="file-meta">$2.850 · Konsept onayında · Mayıs 2025</p>
+            </div>
+            <span class="status status-pending"><span class="status-dot"></span>Bekliyor</span>
+          </div>
+          <div class="file-row">
+            <div class="file-info">
+              <p class="file-name">Final Ödeme — %30</p>
+              <p class="file-meta">$2.850 · Teslimat öncesinde · Haziran 2025</p>
+            </div>
+            <span class="status status-pending" style="opacity:0.5;"><span class="status-dot"></span>Bekliyor</span>
+          </div>
+        </div>
+
+        <div class="p-card" style="margin-top:16px;">
+          <p class="p-card-label" style="margin-bottom:16px;">Fatura Bilgileri</p>
+          <div class="brief-row"><span class="brief-key">Şirket Adı</span><span class="brief-val">[Müşteri Şirket Adı]</span></div>
+          <div class="brief-row"><span class="brief-key">Vergi No</span><span class="brief-val">••••••••••</span></div>
+          <div class="brief-row"><span class="brief-key">Vergi Dairesi</span><span class="brief-val">[Vergi Dairesi]</span></div>
+          <div class="brief-row"><span class="brief-key">Fatura Adresi</span><span class="brief-val">[Adres]</span></div>
+          <div class="brief-row" style="margin-bottom:0;"><span class="brief-key">Yetkili Kişi</span><span class="brief-val">[Ad Soyad]</span></div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+// ── Mock credentials (demo only) ──
+const DEMO_USERS = [
+  {email:'demo@client.com', password:'demo1234', name:'Demo Müşteri'},
+  {email:'musteri@marka.com', password:'sezenstudio', name:'Marka Sahibi'},
+];
+
+function doLogin(){
+  const email = document.getElementById('login-email').value.trim().toLowerCase();
+  const pass = document.getElementById('login-pass').value;
+  const user = DEMO_USERS.find(u => u.email === email && u.password === pass);
+  if(user){
+    sessionStorage.setItem('portal_user', JSON.stringify(user));
+    showPortal(user);
+  } else {
+    document.getElementById('login-err').style.display='block';
+  }
+}
+
+function doLogout(){
+  sessionStorage.removeItem('portal_user');
+  document.getElementById('view-portal').style.display='none';
+  document.getElementById('view-login').style.display='flex';
+}
+
+function showPortal(user){
+  document.getElementById('view-login').style.display='none';
+  document.getElementById('view-portal').style.display='block';
+  document.getElementById('portal-client-name').textContent = user.name;
+  document.getElementById('dash-name').textContent = user.name.split(' ')[0];
+}
+
+// Tab switching
+function showTab(name){
+  document.querySelectorAll('.p-page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.p-nav-item').forEach(a=>a.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  document.querySelectorAll('.p-nav-item').forEach(a=>{
+    if(a.getAttribute('onclick') && a.getAttribute('onclick').includes("'"+name+"'")){
+      a.classList.add('active');
+    }
+  });
+}
+
+// Simple message send
+function sendMsg(){
+  const input = document.getElementById('msg-input');
+  const text = input.value.trim();
+  if(!text) return;
+  const thread = document.getElementById('msg-thread');
+  const now = new Date();
+  const time = now.getDate()+' '+['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'][now.getMonth()]+', '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+  const user = JSON.parse(sessionStorage.getItem('portal_user')||'{}');
+  const div = document.createElement('div');
+  div.className='msg-bubble from-client';
+  div.innerHTML=`<p class="msg-sender">${user.name||'Siz'}</p><p class="msg-text">${text}</p><p class="msg-time">${time}</p>`;
+  thread.appendChild(div);
+  thread.scrollTop=thread.scrollHeight;
+  input.value='';
+}
+document.getElementById('msg-input').addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg();});
+
+// Enter key on login
+document.getElementById('login-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+// Check session
+window.addEventListener('DOMContentLoaded',()=>{
+  const saved = sessionStorage.getItem('portal_user');
+  if(saved) showPortal(JSON.parse(saved));
+});
+</script>
+</body>
+</html>
