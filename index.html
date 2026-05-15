@@ -332,6 +332,68 @@ footer{background:var(--ink);color:var(--warm);padding:32px 48px;display:flex;ju
   .nav-right { display: none; }
   .hamburger { display: flex; }
 }
+
+/* ── LET'S WORK BUTTON ── */
+.letswork-btn{display:inline-flex;align-items:center;gap:10px;margin-top:28px;background:var(--ink);color:var(--paper);border:none;padding:14px 28px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;}
+.letswork-btn:hover{opacity:0.78;}
+
+/* ── MULTI-STEP FORM MODAL ── */
+.wizard-overlay{position:fixed;inset:0;background:var(--paper);z-index:1000;display:none;flex-direction:column;overflow-y:auto;}
+.wizard-overlay.open{display:flex;}
+.wizard-topbar{position:sticky;top:0;background:var(--paper);border-bottom:0.5px solid rgba(26,26,24,0.15);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;z-index:10;flex-shrink:0;}
+.wizard-logo{font-family:var(--serif);font-size:18px;font-weight:300;}
+.wizard-close{background:none;border:none;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mid);cursor:pointer;padding:0;}
+.wizard-close:hover{color:var(--ink);}
+.wizard-progress{display:flex;gap:0;padding:0 48px;margin-top:40px;margin-bottom:56px;flex-shrink:0;}
+.wizard-step-indicator{flex:1;position:relative;}
+.wizard-step-indicator::after{content:'';position:absolute;top:6px;left:50%;right:-50%;height:0.5px;background:rgba(26,26,24,0.2);}
+.wizard-step-indicator:last-child::after{display:none;}
+.wsi-dot{width:13px;height:13px;border-radius:50%;border:0.5px solid rgba(26,26,24,0.3);background:var(--paper);margin:0 auto 10px;transition:all 0.25s;position:relative;z-index:1;}
+.wizard-step-indicator.done .wsi-dot{background:var(--ink);border-color:var(--ink);}
+.wizard-step-indicator.active .wsi-dot{background:var(--paper);border:2px solid var(--ink);box-shadow:0 0 0 3px rgba(26,26,24,0.1);}
+.wsi-label{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);text-align:center;line-height:1.4;}
+.wizard-step-indicator.active .wsi-label,.wizard-step-indicator.done .wsi-label{color:var(--ink-mid);}
+.wizard-body{max-width:680px;margin:0 auto;padding:0 48px 80px;width:100%;}
+.wizard-page{display:none;}
+.wizard-page.active{display:block;}
+.wizard-sec-label{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:12px;}
+.wizard-title{font-family:var(--serif);font-size:48px;font-weight:300;font-style:italic;line-height:1.1;margin-bottom:8px;}
+.wizard-title em{font-style:normal;}
+.wizard-sub{font-family:var(--sans);font-size:15px;font-weight:300;color:var(--ink-mid);margin-bottom:40px;line-height:1.6;}
+.wiz-row{margin-bottom:24px;}
+.wiz-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mid);display:block;margin-bottom:8px;}
+.wiz-input,.wiz-textarea,.wiz-select{width:100%;background:transparent;border:none;border-bottom:0.5px solid rgba(26,26,24,0.4);padding:10px 0;font-family:var(--sans);font-size:15px;font-weight:300;color:var(--ink);outline:none;transition:border-color 0.2s;-webkit-appearance:none;}
+.wiz-input:focus,.wiz-textarea:focus,.wiz-select:focus{border-bottom-color:var(--ink);}
+.wiz-input::placeholder,.wiz-textarea::placeholder{color:var(--ink-faint);}
+.wiz-textarea{resize:vertical;min-height:90px;padding:10px 0;}
+.wiz-select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpolyline points='0,0 5,6 10,0' fill='none' stroke='%236b6b66' stroke-width='1'/%3E%3C/svg%3E") no-repeat right center;}
+.wiz-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;}
+@media(max-width:600px){.wiz-grid-2{grid-template-columns:1fr;}}
+.wiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:32px;border-top:0.5px solid rgba(26,26,24,0.15);}
+.wiz-btn-back{background:none;border:0.5px solid rgba(26,26,24,0.3);color:var(--ink-mid);padding:12px 28px;font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.wiz-btn-back:hover{border-color:var(--ink);color:var(--ink);}
+.wiz-btn-next{background:var(--ink);color:var(--paper);border:none;padding:14px 36px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;}
+.wiz-btn-next:hover{opacity:0.78;}
+/* Service cards */
+.srv-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;}
+@media(max-width:600px){.srv-cards{grid-template-columns:1fr;}}
+.srv-card{border:0.5px solid rgba(26,26,24,0.2);padding:20px;cursor:pointer;transition:all 0.2s;position:relative;}
+.srv-card:hover{border-color:var(--ink);background:var(--warm);}
+.srv-card.selected{border-color:var(--ink);background:var(--warm);}
+.srv-card.selected::after{content:'✓';position:absolute;top:12px;right:14px;font-size:12px;color:var(--ink);}
+.srv-card-name{font-family:var(--serif);font-size:18px;font-weight:300;font-style:italic;margin-bottom:4px;}
+.srv-card-desc{font-family:var(--sans);font-size:12px;font-weight:300;color:var(--ink-mid);line-height:1.5;}
+.srv-note{font-family:var(--sans);font-size:13px;font-weight:300;color:var(--ink-mid);line-height:1.6;margin-top:8px;}
+/* Thank you */
+.wizard-thankyou{text-align:center;padding:60px 0;}
+.wizard-ty-icon{width:64px;height:64px;border:0.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 32px;}
+.wizard-ty-title{font-family:var(--serif);font-size:52px;font-weight:300;font-style:italic;margin-bottom:12px;}
+.wizard-ty-sub{font-family:var(--sans);font-size:15px;font-weight:300;color:var(--ink-mid);line-height:1.7;max-width:420px;margin:0 auto 36px;}
+.wizard-ty-portal{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;padding:14px 32px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;}
+
+/* ── PORTAL NAV LINK ── */
+.portal-nav-link{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mid);background:none;border:0.5px solid rgba(26,26,24,0.3);padding:6px 14px;cursor:pointer;text-decoration:none;transition:all 0.2s;margin-left:8px;}
+.portal-nav-link:hover{border-color:var(--ink);color:var(--ink);}
 </style>
 </head>
 <body>
@@ -348,6 +410,7 @@ footer{background:var(--ink);color:var(--warm);padding:32px 48px;display:flex;ju
     <div class="lang-sep"></div>
     <button class="lang-btn active" id="btn-tr" onclick="setLang('tr')">TR</button>
     <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    <a class="portal-nav-link" href="portal.html" target="_blank">Client Portal</a>
   </div>
   <button class="hamburger" id="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -379,6 +442,7 @@ footer{background:var(--ink);color:var(--warm);padding:32px 48px;display:flex;ju
     <div style="max-width:720px;">
       <p class="hero-tagline" id="hero-tagline" style="font-size:clamp(24px,3vw,36px);max-width:640px;margin-bottom:32px;">Creating visual experiences that reflect you and your brand's soul — through strategy, form, and enduring craft.</p>
       <div class="hero-meta"><span>Istanbul — 2020</span><span>BRANDING · PACKAGING · DIRECTION</span></div>
+      <button class="letswork-btn" onclick="openWizard()" id="hero-letswork">Birlikte Çalışalım →</button>
     </div>
   </section>
   <div class="divider"></div>
@@ -1216,5 +1280,292 @@ function closeMobileMenu() {
 
 setLang('en');
 </script>
+
+<!-- ─────────────────────────────────────────────
+     LET'S WORK — MULTI-STEP WIZARD
+───────────────────────────────────────────── -->
+<div class="wizard-overlay" id="wizard-overlay">
+
+  <div class="wizard-topbar">
+    <span class="wizard-logo">Sezen Tunca Studio</span>
+    <button class="wizard-close" onclick="closeWizard()">Kapat ×</button>
+  </div>
+
+  <!-- Progress indicators -->
+  <div class="wizard-progress" id="wizard-progress">
+    <div class="wizard-step-indicator active" data-step="1">
+      <div class="wsi-dot"></div>
+      <p class="wsi-label">Tanışma</p>
+    </div>
+    <div class="wizard-step-indicator" data-step="2">
+      <div class="wsi-dot"></div>
+      <p class="wsi-label">Hizmet</p>
+    </div>
+    <div class="wizard-step-indicator" data-step="3">
+      <div class="wsi-dot"></div>
+      <p class="wsi-label">Teklif</p>
+    </div>
+    <div class="wizard-step-indicator" data-step="4">
+      <div class="wsi-dot"></div>
+      <p class="wsi-label">Brief</p>
+    </div>
+    <div class="wizard-step-indicator" data-step="5">
+      <div class="wsi-dot"></div>
+      <p class="wsi-label">Onay</p>
+    </div>
+  </div>
+
+  <div class="wizard-body">
+
+    <!-- ── STEP 1: TANIŞMA FORMU ── -->
+    <div class="wizard-page active" id="wiz-step-1">
+      <p class="wizard-sec-label">Adım 1 / 5</p>
+      <h2 class="wizard-title">Sizi tanımak<br><em>isteriz.</em></h2>
+      <p class="wizard-sub">Başlamadan önce birkaç temel bilgiye ihtiyacımız var.</p>
+
+      <div class="wiz-grid-2">
+        <div class="wiz-row">
+          <label class="wiz-label">Ad Soyad *</label>
+          <input class="wiz-input" id="wiz-name" type="text" placeholder="Adınız Soyadınız">
+        </div>
+        <div class="wiz-row">
+          <label class="wiz-label">E-posta *</label>
+          <input class="wiz-input" id="wiz-email" type="email" placeholder="ornek@email.com">
+        </div>
+      </div>
+      <div class="wiz-grid-2">
+        <div class="wiz-row">
+          <label class="wiz-label">Şirket / Marka Adı</label>
+          <input class="wiz-input" id="wiz-company" type="text" placeholder="Markanızın adı">
+        </div>
+        <div class="wiz-row">
+          <label class="wiz-label">Web Sitesi (varsa)</label>
+          <input class="wiz-input" id="wiz-website" type="text" placeholder="markaniz.com">
+        </div>
+      </div>
+      <div class="wiz-row">
+        <label class="wiz-label">Markanızdan Kısaca Bahsedin *</label>
+        <textarea class="wiz-textarea" id="wiz-about" placeholder="Ne yapıyorsunuz? Kime hitap ediyorsunuz? Neden bir marka kimliğine ihtiyaç duyuyorsunuz?"></textarea>
+      </div>
+      <div class="wiz-grid-2">
+        <div class="wiz-row">
+          <label class="wiz-label">Konum</label>
+          <input class="wiz-input" id="wiz-location" type="text" placeholder="İstanbul, Türkiye">
+        </div>
+        <div class="wiz-row">
+          <label class="wiz-label">Nereden Duydunuz?</label>
+          <select class="wiz-select" id="wiz-source">
+            <option value="">Seçin</option>
+            <option>Instagram</option>
+            <option>Tavsiye</option>
+            <option>Google</option>
+            <option>Behance / Dribbble</option>
+            <option>Diğer</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="wiz-nav">
+        <span></span>
+        <button class="wiz-btn-next" onclick="wizNext(1)">Devam Et →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 2: HİZMET SEÇİMİ ── -->
+    <div class="wizard-page" id="wiz-step-2">
+      <p class="wizard-sec-label">Adım 2 / 5</p>
+      <h2 class="wizard-title">Ne yapmamızı<br><em>istersiniz?</em></h2>
+      <p class="wizard-sub">İhtiyacınıza en uygun hizmeti seçin. Birden fazla seçebilirsiniz.</p>
+
+      <div class="srv-cards">
+        <div class="srv-card" onclick="toggleService(this,'brand-identity')">
+          <p class="srv-card-name">Marka Kimliği</p>
+          <p class="srv-card-desc">Logo, renk sistemi, tipografi ve tüm görsel varlıklar. Markanızın görsel dili sıfırdan inşa edilir.</p>
+        </div>
+        <div class="srv-card" onclick="toggleService(this,'brand-strategy')">
+          <p class="srv-card-name">Marka Stratejisi</p>
+          <p class="srv-card-desc">Konumlandırma, mesaj ve ses tonu. Ne için durduğunuzu ve bunu nasıl ileteceğinizi birlikte belirliyoruz.</p>
+        </div>
+        <div class="srv-card" onclick="toggleService(this,'packaging')">
+          <p class="srv-card-name">Ambalaj Tasarımı</p>
+          <p class="srv-card-desc">Raflarda ve ellerde yaşayan etiket, kutu ve yapısal tasarım. Konseptten baskı dosyasına kadar.</p>
+        </div>
+        <div class="srv-card" onclick="toggleService(this,'art-direction')">
+          <p class="srv-card-name">Art Direction</p>
+          <p class="srv-card-desc">Kampanya, lookbook ve editoryal projeler için görsel dil ve konsept geliştirme.</p>
+        </div>
+        <div class="srv-card" onclick="toggleService(this,'illustration')">
+          <p class="srv-card-name">Özel İllüstrasyon</p>
+          <p class="srv-card-desc">Ambalaj ve marka anlatıları için el yapımı illüstrasyon. Tamamen size özel.</p>
+        </div>
+        <div class="srv-card" onclick="toggleService(this,'full-brand')">
+          <p class="srv-card-name">Tam Marka Paketi</p>
+          <p class="srv-card-desc">Kimlik + Strateji birlikte. Sıfırdan kapsamlı bir marka inşası için tasarlanmış paket.</p>
+        </div>
+      </div>
+      <p class="srv-note">Hangi hizmetin size uygun olduğundan emin değil misiniz? Devam edin — teklif aşamasında birlikte değerlendiririz.</p>
+
+      <div class="wiz-nav">
+        <button class="wiz-btn-back" onclick="wizBack(2)">← Geri</button>
+        <button class="wiz-btn-next" onclick="wizNext(2)">Devam Et →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 3: TEKLİF TALEBİ ── -->
+    <div class="wizard-page" id="wiz-step-3">
+      <p class="wizard-sec-label">Adım 3 / 5</p>
+      <h2 class="wizard-title">Bütçe ve<br><em>zaman çizelgesi.</em></h2>
+      <p class="wizard-sub">Bu bilgiler size en uygun teklifi hazırlamamız için gerekli. Endişelenmeyin, her bütçeye saygı gösteriyoruz.</p>
+
+      <div class="wiz-row">
+        <label class="wiz-label">Bütçe Aralığı</label>
+        <select class="wiz-select" id="wiz-budget">
+          <option value="">Belirtmek istemiyorum</option>
+          <option>$3.000 altı</option>
+          <option>$3.000 – $7.000</option>
+          <option>$7.000 – $15.000</option>
+          <option>$15.000 – $30.000</option>
+          <option>$30.000 üzeri</option>
+        </select>
+      </div>
+      <div class="wiz-row">
+        <label class="wiz-label">Hedef Lansman / Son Tarih</label>
+        <input class="wiz-input" id="wiz-timeline" type="text" placeholder="örn. Eylül 2025, esnek, en kısa sürede...">
+      </div>
+      <div class="wiz-row">
+        <label class="wiz-label">Süreçte Neredesiniz?</label>
+        <select class="wiz-select" id="wiz-stage">
+          <option value="">Seçin</option>
+          <option>Sıfırdan başlıyorum — henüz marka yok</option>
+          <option>Var olan markayı yenilemek istiyorum</option>
+          <option>Tam bir yeniden markalama</option>
+          <option>Belirli bir teslimat (ambalaj, kampanya vb.)</option>
+        </select>
+      </div>
+      <div class="wiz-row">
+        <label class="wiz-label">Eklemek İstedikleriniz</label>
+        <textarea class="wiz-textarea" id="wiz-extra" placeholder="Referanslar, kısıtlamalar, beklentiler, sorular..."></textarea>
+      </div>
+
+      <div class="wiz-nav">
+        <button class="wiz-btn-back" onclick="wizBack(3)">← Geri</button>
+        <button class="wiz-btn-next" onclick="wizNext(3)">Teklif Talep Et →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 4: TEKLIF GÖNDERİLDİ / BEKLEYEN ── -->
+    <div class="wizard-page" id="wiz-step-4">
+      <p class="wizard-sec-label">Adım 4 / 5</p>
+      <h2 class="wizard-title">Teklif yolda,<br><em>biraz sabır.</em></h2>
+      <p class="wizard-sub">Talebiniz bize ulaştı. Genellikle 2–3 iş günü içinde özelleştirilmiş teklifinizi e-posta ile iletiyoruz.<br><br>Bu aşamada hazırlamanızı istediğimiz birkaç şey var:</p>
+
+      <div style="margin-bottom:32px;">
+        <div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:0.5px solid rgba(26,26,24,0.1);">
+          <span style="font-family:var(--mono);font-size:11px;color:var(--ink-mid);min-width:24px;margin-top:2px;">01</span>
+          <div>
+            <p style="font-family:var(--sans);font-size:14px;font-weight:400;margin-bottom:4px;">Referans görseller toplayın</p>
+            <p style="font-family:var(--sans);font-size:13px;color:var(--ink-mid);">Beğendiğiniz marka tasarımları, renkler, genel estetik anlayışlar. Pinterest, Instagram, web siteleri hepsi kabul.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:0.5px solid rgba(26,26,24,0.1);">
+          <span style="font-family:var(--mono);font-size:11px;color:var(--ink-mid);min-width:24px;margin-top:2px;">02</span>
+          <div>
+            <p style="font-family:var(--sans);font-size:14px;font-weight:400;margin-bottom:4px;">3 rakip veya referans marka belirleyin</p>
+            <p style="font-family:var(--sans);font-size:13px;color:var(--ink-mid);">Nerede durduğunuzu ve kendinizi onlardan nasıl farklılaştırmak istediğinizi düşünün.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;">
+          <span style="font-family:var(--mono);font-size:11px;color:var(--ink-mid);min-width:24px;margin-top:2px;">03</span>
+          <div>
+            <p style="font-family:var(--sans);font-size:14px;font-weight:400;margin-bottom:4px;">Mevcut materyalleri hazırlayın (varsa)</p>
+            <p style="font-family:var(--sans);font-size:13px;color:var(--ink-mid);">Eski logo, renk kodu, font, web sitesi — bunları keşif toplantısına getirin.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="wiz-nav">
+        <button class="wiz-btn-back" onclick="wizBack(4)">← Geri</button>
+        <button class="wiz-btn-next" onclick="wizNext(4)">Teklifi Onayladım →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 5: TEŞEKKÜR / PORTAL ── -->
+    <div class="wizard-page" id="wiz-step-5">
+      <div class="wizard-thankyou">
+        <div class="wizard-ty-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="20,6 9,17 4,12"/></svg>
+        </div>
+        <h2 class="wizard-ty-title">Harika,<br><em>başlayalım.</em></h2>
+        <p class="wizard-ty-sub">Bilgileriniz sistemimize kaydedildi. Teklif onayının ardından size özel bir <strong>client portal</strong> erişimi tanımlayacağız. Tüm proje sürecini oradan takip edebileceksiniz.</p>
+        <a class="wizard-ty-portal" href="portal.html" target="_blank">Client Portal'a Göz At →</a>
+        <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--ink-faint);margin-top:20px;">Demo için: demo@client.com / demo1234</p>
+      </div>
+    </div>
+
+  </div><!-- /wizard-body -->
+</div><!-- /wizard-overlay -->
+
+<script>
+// ── Wizard state ──
+let wiz = { services: [] };
+
+function openWizard(){
+  document.getElementById('wizard-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  setWizStep(1);
+}
+function closeWizard(){
+  document.getElementById('wizard-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+// Close on Escape
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeWizard(); });
+
+function setWizStep(n){
+  document.querySelectorAll('.wizard-page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('wiz-step-'+n).classList.add('active');
+  document.querySelectorAll('.wizard-step-indicator').forEach(el=>{
+    const s = parseInt(el.dataset.step);
+    el.classList.toggle('done', s < n);
+    el.classList.toggle('active', s === n);
+  });
+  document.getElementById('wizard-overlay').scrollTop=0;
+  wiz.currentStep = n;
+}
+
+function wizNext(from){
+  if(from===1){
+    const name=document.getElementById('wiz-name').value.trim();
+    const email=document.getElementById('wiz-email').value.trim();
+    const about=document.getElementById('wiz-about').value.trim();
+    if(!name||!email||!about){alert('Lütfen zorunlu alanları doldurun (Ad Soyad, E-posta, Marka Bilgisi).');return;}
+    wiz.name=name; wiz.email=email;
+  }
+  if(from===3){
+    // Simulate form submit — in production this would POST to EmailJS/backend
+    console.log('Form data:', wiz);
+  }
+  setWizStep(from+1);
+}
+function wizBack(from){ setWizStep(from-1); }
+
+function toggleService(el, val){
+  el.classList.toggle('selected');
+  if(el.classList.contains('selected')){
+    if(!wiz.services.includes(val)) wiz.services.push(val);
+  } else {
+    wiz.services = wiz.services.filter(s=>s!==val);
+  }
+}
+
+// Update Let's Work button text with lang
+const _origSetLang = typeof setLang === 'function' ? setLang : null;
+function setLang(lang){
+  if(_origSetLang) _origSetLang(lang);
+  const btn = document.getElementById('hero-letswork');
+  if(btn) btn.textContent = lang==='en' ? 'Let\u2019s Work Together \u2192' : 'Birlikte \u00c7al\u0131\u015falım \u2192';
+}
+</script>
+
 </body>
 </html>
