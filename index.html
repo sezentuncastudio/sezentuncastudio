@@ -392,7 +392,7 @@ footer{background:var(--ink);color:var(--warm);padding:32px 48px;display:flex;ju
 .wizard-ty-portal{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;padding:14px 32px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;}
 
 /* ── PORTAL NAV LINK ── */
-.portal-nav-link{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mid);background:none;border:0.5px solid rgba(26,26,24,0.3);padding:6px 14px;cursor:pointer;text-decoration:none;transition:all 0.2s;margin-left:8px;}
+.portal-nav-link{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--ink-mid);background:none;border:0.5px solid rgba(26,26,24,0.3);padding:6px 14px;cursor:pointer;text-decoration:none;transition:all 0.2s;margin-left:8px;}
 .portal-nav-link:hover{border-color:var(--ink);color:var(--ink);}
 </style>
 </head>
@@ -410,7 +410,7 @@ footer{background:var(--ink);color:var(--warm);padding:32px 48px;display:flex;ju
     <div class="lang-sep"></div>
     <button class="lang-btn active" id="btn-tr" onclick="setLang('tr')">TR</button>
     <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-    <a class="portal-nav-link" href="portal.html" target="_blank">Client Portal</a>
+    <a class="portal-nav-link" href="portal.html" target="_blank">CLIENT PORTAL</a>
   </div>
   <button class="hamburger" id="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -665,26 +665,6 @@ footer{background:var(--ink);color:var(--warm);padding:32px 48px;display:flex;ju
         <span class="sec-label" id="con-sec">Get in Touch</span>
         <h2 class="contact-headline" id="con-headline">Let's make<br>something<br><em>worth keeping</em></h2>
       </div>
-      <div>
-        <div class="contact-item"><div class="contact-label">Email</div><a class="contact-value" href="mailto:hello@sezentunca.com">hello@sezentunca.com</a></div>
-        <div class="contact-item">
-          <div class="contact-label" id="con-loc-label">Konum</div>
-          <span class="contact-value" style="font-size:15px;line-height:1.6;">
-            Hacı Emin Efendi Sk. No: 24/5<br>
-            Nişantaşı Apt. Teşvikiye / Şişli<br>
-            İstanbul, Türkiye
-          </span>
-        </div>
-        <div class="contact-item">
-          <div class="contact-label">Google Maps</div>
-          <a class="contact-value" href="https://maps.google.com/?q=41.051186699999995,28.995905200000003" target="_blank" style="font-size:14px;color:var(--ink-mid);font-family:var(--mono);letter-spacing:0.05em;">Yol Tarifi Al →</a>
-        </div>
-        <div class="contact-item"><div class="contact-label">Working with clients</div><span class="contact-value" style="font-style:italic;font-size:15px;">Worldwide</span></div>
-        <div class="contact-social">
-          <a class="social-link" href="https://www.instagram.com/sezentuncastudio" target="_blank">Instagram</a>
-          <a class="social-link" href="https://www.behance.net/sezentunca" target="_blank">Behance</a>
-        </div>
-      </div>
     </div>
     <div class="contact-right" style="overflow-y:auto;max-height:calc(100vh - 72px);">
       <!-- Google Maps Embed -->
@@ -702,7 +682,29 @@ footer{background:var(--ink);color:var(--warm);padding:32px 48px;display:flex;ju
           Teşvikiye / Şişli, İstanbul
         </p>
       </div>
-
+      <!-- Contact info moved below map -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;padding-top:8px;">
+        <div class="contact-item"><div class="contact-label">Email</div><a class="contact-value" href="mailto:hello@sezentunca.com">hello@sezentunca.com</a></div>
+        <div class="contact-item">
+          <div class="contact-label" id="con-loc-label">Konum</div>
+          <span class="contact-value" style="font-size:14px;line-height:1.6;">
+            Hacı Emin Efendi Sk. No: 24/5<br>
+            Nişantaşı Apt. Teşvikiye / Şişli<br>
+            İstanbul, Türkiye
+          </span>
+        </div>
+        <div>
+          <div class="contact-item">
+            <div class="contact-label">Google Maps</div>
+            <a class="contact-value" href="https://maps.google.com/?q=41.051186699999995,28.995905200000003" target="_blank" style="font-size:14px;color:var(--ink-mid);font-family:var(--mono);letter-spacing:0.05em;">Yol Tarifi Al →</a>
+          </div>
+          <div class="contact-item"><div class="contact-label">Working with clients</div><span class="contact-value" style="font-style:italic;font-size:14px;">Worldwide</span></div>
+          <div class="contact-social" style="margin-top:16px;">
+            <a class="social-link" href="https://www.instagram.com/sezentuncastudio" target="_blank">Instagram</a>
+            <a class="social-link" href="https://www.behance.net/sezentunca" target="_blank">Behance</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
