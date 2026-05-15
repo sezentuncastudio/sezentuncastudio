@@ -1089,8 +1089,10 @@ function setLang(lang) {
       }
     });
   }
-  document.getElementById('jrn-headline').textContent = l.jrnHead;
-  document.getElementById('jrn-sub').innerHTML = l.jrnSub;
+  const jrnH = document.getElementById('jrn-headline');
+  if (jrnH) jrnH.textContent = l.jrnHead;
+  const jrnS = document.getElementById('jrn-sub');
+  if (jrnS) jrnS.innerHTML = l.jrnSub;
   document.getElementById('con-sec').textContent = l.conSec;
   document.getElementById('con-headline').innerHTML = l.conHead;
   document.getElementById('con-form-label').textContent = l.conForm;
