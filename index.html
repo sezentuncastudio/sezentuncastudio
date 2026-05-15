@@ -1014,7 +1014,8 @@ const TR = {
   ],
   typeOpts:['Bir hizmet seçin','Marka Kimliği (logo, renk, tipografi, marka sistemi)','Marka Stratejisi (konumlandırma, mesaj, ses tonu)','Ambalaj Tasarımı','Art direction (kampanya, lookbook, editoryal)','Özel İllüstrasyon','Tam Marka — Kimlik + Strateji','Henüz emin değilim — konuşalım'],
   stageOpts:['Birini seçin','Sıfırdan başlıyorum — henüz bir marka yok','Var olan markayı yenilemek istiyorum','Tam bir yeniden markalama','Belirli bir teslimat (ambalaj, kampanya vb.)'],
-  ph:{name:'Adınız',email:'e-posta@adresiniz.com',company:'Markanızın adı nedir?',about:'Markanız ne yapıyor? Kime hitap ediyor? Sizi farklı kılan ne?',audience:'Yaş, yaşam tarzı, değerler, coğrafya — ne kadar spesifik olursanız o kadar iyi.',personality:'örn. zarif ama sıcak, cesur ve özgün, sessiz lüks, oyuncu ve dürüst...',admire:'Sektörünüzden olmak zorunda değil. Onlarda neyi sevdiğinizi anlatın.',feeling:'İlk izlenim, duygusal tepki, kalıcı hafıza...',timeline:"örn. Eylül'de lansman, esnek, en kısa sürede...",extra:'İlham kaynakları, referanslar, kısıtlamalar, beklentiler...'}
+  budgetOpts:['Belirtmek istemiyorum','$3.000 altı','$3.000 – $7.000','$7.000 – $15.000','$15.000 – $30.000','$30.000 üzeri'],
+  ph:{name:'Adınız',email:'e-posta@adresiniz.com',company:'Markanızın adı nedir?',website:'websiteniz.com (varsa)',about:'Markanız ne yapıyor? Kime hitap ediyor? Sizi farklı kılan ne?',audience:'Yaş, yaşam tarzı, değerler, coğrafya — ne kadar spesifik olursanız o kadar iyi.',personality:'örn. zarif ama sıcak, cesur ve özgün, sessiz lüks, oyuncu ve dürüst...',admire:'Sektörünüzden olmak zorunda değil. Onlarda neyi sevdiğinizi anlatın.',feeling:'İlk izlenim, duygusal tepki, kalıcı hafıza...',timeline:"örn. Eylül'de lansman, esnek, en kısa sürede...",extra:'İlham kaynakları, referanslar, kısıtlamalar, beklentiler...'}
 };
 const EN = {
   navWork:'Work', navAbout:'About', navServices:'Services', navContact:'Contact',
@@ -1048,7 +1049,8 @@ const EN = {
   ],
   typeOpts:['Select a service','Brand Identity (logo, colour, typography, brand system)','Brand Strategy (positioning, messaging, tone of voice)','Packaging Design','Art Direction (campaign, lookbook, editorial)','Custom Illustration','Full Brand — Identity + Strategy',"Not sure yet — let's talk"],
   stageOpts:['Select one','Starting from scratch — no brand yet','Refreshing an existing brand','Full rebrand','A specific deliverable (packaging, campaign, etc.)'],
-  ph:{name:'Your name',email:'your@email.com',company:"What's your brand name?",about:'What does your brand do? Who is it for? What makes it different?',audience:'Age, lifestyle, values, geography — the more specific the better.',personality:'e.g. elegant but warm, bold and authentic, quiet luxury, playful and honest...',admire:"Doesn't have to be in your industry. Tell us what you love about them.",feeling:'First impression, emotional response, lasting memory...',timeline:'e.g. September launch, flexible, as soon as possible...',extra:"Inspiration, references, constraints, expectations..."}
+  budgetOpts:['Prefer not to say','Under $3,000','$3,000 – $7,000','$7,000 – $15,000','$15,000 – $30,000','Over $30,000'],
+  ph:{name:'Your name',email:'your@email.com',company:"What's your brand name?",website:'yourwebsite.com (optional)',about:'What does your brand do? Who is it for? What makes it different?',audience:'Age, lifestyle, values, geography — the more specific the better.',personality:'e.g. elegant but warm, bold and authentic, quiet luxury, playful and honest...',admire:"Doesn't have to be in your industry. Tell us what you love about them.",feeling:'First impression, emotional response, lasting memory...',timeline:'e.g. September launch, flexible, as soon as possible...',extra:"Inspiration, references, constraints, expectations..."}
 };
 
 function setLang(lang) {
@@ -1162,9 +1164,17 @@ function setLang(lang) {
   if (stageSelect && l.stageOpts) {
     stageSelect.innerHTML = l.stageOpts.map((t,i) => `<option value="${i===0?'':i}">${t}</option>`).join('');
   }
+  // Budget select
+  const budgetSelect = document.getElementById('f-budget');
+  if (budgetSelect && l.budgetOpts) {
+    budgetSelect.innerHTML = l.budgetOpts.map((t,i) => `<option value="${i===0?'':t}">${t}</option>`).join('');
+  }
+  // Directions button
+  const dirBtn = document.querySelector('a[href*="maps.google.com"]');
+  if (dirBtn) dirBtn.textContent = lang === 'tr' ? 'Yol Tarifi Al →' : 'Get Directions →';
   // Placeholders
   if (l.ph) {
-    const phMap = {name:'f-name',email:'f-email',company:'f-company',about:'f-about',audience:'f-audience',personality:'f-personality',admire:'f-admire',feeling:'f-feeling',timeline:'f-timeline',extra:'f-extra'};
+    const phMap = {name:'f-name',email:'f-email',company:'f-company',website:'f-website',about:'f-about',audience:'f-audience',personality:'f-personality',admire:'f-admire',feeling:'f-feeling',timeline:'f-timeline',extra:'f-extra'};
     Object.entries(phMap).forEach(([k,id]) => {
       const el = document.getElementById(id);
       if (el && l.ph[k]) el.placeholder = l.ph[k];
