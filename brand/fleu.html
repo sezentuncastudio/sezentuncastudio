@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fleu — Brand Hub · Sezen Tunca Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root {
+  --fleu-blue:   #8C9EC1;
+  --fleu-sky:    #A4BBCF;
+  --fleu-brown:  #3D1B0A;
+  --paper:       #F7F6F2;
+  --warm:        #EFEDE6;
+  --ink:         #1A1A18;
+  --ink-mid:     #6B6B66;
+  --ink-faint:   #9A9A94;
+
+  /* IvyPresto not available via CDN — Cormorant stands in for demo */
+  --display: 'Cormorant Garamond', Georgia, serif;
+  --sans:    'Outfit', system-ui, sans-serif;
+  --mono:    'DM Mono', monospace;
+
+  --nav-h: 56px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(247,246,242,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 0.5px solid rgba(26,26,24,0.12);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  z-index: 200;
+}
+.topbar-brand {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+.topbar-brand strong { color: var(--ink); }
+.topbar-nav {
+  display: flex; gap: 32px; list-style: none;
+}
+.topbar-nav a {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.topbar-nav a:hover, .topbar-nav a.active { color: var(--ink); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: calc(var(--nav-h) + 60px) 48px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg-word {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -52%);
+  font-family: var(--display);
+  font-size: clamp(180px, 28vw, 420px);
+  font-weight: 300;
+  color: rgba(140,158,193,0.12);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.02em;
+}
+.hero-content { position: relative; max-width: 760px; }
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 0.5px;
+  background: var(--fleu-blue);
+}
+.hero-title {
+  font-family: var(--display);
+  font-size: clamp(64px, 10vw, 120px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--fleu-blue);
+}
+.hero-desc {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--ink-mid);
+  max-width: 440px;
+  line-height: 1.7;
+  margin-bottom: 48px;
+}
+.hero-meta {
+  display: flex; gap: 40px;
+}
+.hero-meta-item {}
+.hero-meta-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 4px;
+}
+.hero-meta-value {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-mid);
+}
+.hero-scroll {
+  position: absolute; bottom: 72px; right: 48px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  writing-mode: vertical-rl;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-scroll::after {
+  content: '';
+  display: block;
+  width: 0.5px; height: 48px;
+  background: var(--ink-faint);
+}
+
+/* ── DIVIDER ── */
+.section-divider { border: none; border-top: 0.5px solid rgba(26,26,24,0.12); }
+
+/* ── SECTION SHELL ── */
+.section { padding: 96px 48px; }
+.section + .section { border-top: 0.5px solid rgba(26,26,24,0.1); }
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.05;
+  margin-bottom: 56px;
+}
+.section-title em { font-style: normal; }
+
+/* ── LOGOS ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+@media (max-width: 900px) { .logo-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .logo-grid { grid-template-columns: 1fr; } }
+
+.logo-card {
+  aspect-ratio: 4/3;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.logo-card-inner {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 32px;
+}
+.logo-placeholder {
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  font-style: italic;
+  text-align: center;
+}
+.logo-card-footer {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 12px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo-card-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.logo-dl {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 0.5px solid currentColor;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.logo-card:hover .logo-dl { opacity: 1; }
+
+/* Logo color variants */
+.logo-white  { background: #ffffff; color: var(--fleu-blue); }
+.logo-white .logo-card-label  { color: rgba(26,26,24,0.4); }
+.logo-white .logo-dl           { color: var(--ink-mid); }
+
+.logo-blue   { background: var(--fleu-blue); color: #ffffff; }
+.logo-blue .logo-card-label   { color: rgba(255,255,255,0.5); }
+.logo-blue .logo-dl            { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.4); }
+
+.logo-dark   { background: var(--fleu-brown); color: var(--fleu-sky); }
+.logo-dark .logo-card-label   { color: rgba(255,255,255,0.4); }
+.logo-dark .logo-dl            { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.3); }
+
+.logo-paper  { background: var(--paper); color: var(--fleu-brown); }
+.logo-paper .logo-card-label  { color: rgba(26,26,24,0.4); }
+.logo-paper .logo-dl           { color: var(--ink-mid); }
+
+.logo-sky    { background: var(--fleu-sky); color: #ffffff; }
+.logo-sky .logo-card-label    { color: rgba(255,255,255,0.5); }
+.logo-sky .logo-dl             { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.4); }
+
+.logo-invert { background: var(--ink); color: var(--fleu-sky); }
+.logo-invert .logo-card-label { color: rgba(255,255,255,0.4); }
+.logo-invert .logo-dl          { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.3); }
+
+/* ── COLORS ── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 700px) { .color-grid { grid-template-columns: 1fr; } }
+
+.color-card {}
+.color-swatch {
+  height: 200px;
+  margin-bottom: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.color-swatch:hover { transform: translateY(-3px); }
+.color-copy-hint {
+  position: absolute;
+  bottom: 12px; right: 12px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.2s;
+  padding: 4px 8px;
+  border: 0.5px solid currentColor;
+}
+.color-swatch:hover .color-copy-hint { opacity: 1; }
+.color-swatch.copied::after {
+  content: 'Kopyalandı';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: inherit;
+}
+.color-name {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.color-specs {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.color-spec-row {
+  display: flex; justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding-bottom: 6px;
+  border-bottom: 0.5px solid rgba(26,26,24,0.1);
+}
+.color-spec-row:last-child { border-bottom: none; }
+.color-spec-label { color: var(--ink-faint); text-transform: uppercase; }
+.color-spec-value { color: var(--ink); }
+
+/* Swatch colors */
+.sw-blue  { background: var(--fleu-blue);  color: #fff; }
+.sw-sky   { background: var(--fleu-sky);   color: #fff; }
+.sw-brown { background: var(--fleu-brown); color: var(--fleu-sky); }
+
+/* ── TYPOGRAPHY ── */
+.type-section { margin-bottom: 72px; }
+.type-section:last-child { margin-bottom: 0; }
+.type-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 0.5px solid rgba(26,26,24,0.1);
+}
+.type-specimen-display {
+  font-family: var(--display);
+  font-size: clamp(52px, 8vw, 112px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+.type-specimen-display em { font-style: italic; color: var(--fleu-blue); }
+.type-specimen-body {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  max-width: 640px;
+  margin-bottom: 24px;
+}
+.type-weights {
+  display: flex; gap: 32px; flex-wrap: wrap; margin-top: 16px;
+}
+.type-weight-item {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.type-weight-sample {
+  font-family: var(--display);
+  font-size: 28px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.type-weight-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+
+.type-sans-specimen {
+  font-family: var(--sans);
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+.type-sans-body {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--ink-mid);
+  max-width: 540px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.type-sans-weights {
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.type-sans-weight {
+  font-family: var(--sans);
+  font-size: 15px;
+}
+
+/* ── DOWNLOADS ── */
+.dl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 24px;
+}
+@media (max-width: 700px) { .dl-grid { grid-template-columns: 1fr; } }
+
+.dl-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: white;
+  border: 0.5px solid rgba(26,26,24,0.08);
+  transition: background 0.15s;
+  text-decoration: none;
+  color: inherit;
+}
+.dl-row:hover { background: var(--warm); }
+.dl-icon {
+  width: 40px; height: 40px;
+  background: var(--warm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--ink-mid);
+  text-transform: uppercase;
+}
+.dl-info { flex: 1; }
+.dl-name {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 2px;
+}
+.dl-meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.dl-arrow {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink-mid);
+}
+
+.dl-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--fleu-brown);
+  color: var(--fleu-sky);
+  text-decoration: none;
+  padding: 16px 32px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
+}
+.dl-all:hover { opacity: 0.85; }
+
+/* ── FOOTER ── */
+.brand-footer {
+  padding: 48px;
+  border-top: 0.5px solid rgba(26,26,24,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand-footer-left {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  line-height: 1.8;
+}
+.brand-footer-right {
+  font-family: var(--display);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--ink-mid);
+}
+.brand-footer-right a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.brand-footer-right a:hover { color: var(--ink); }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+  z-index: 999;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .topbar { padding: 0 24px; }
+  .topbar-nav { gap: 20px; }
+  .hero, .section { padding-left: 24px; padding-right: 24px; }
+  .brand-footer { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ── -->
+<header class="topbar">
+  <span class="topbar-brand"><strong>Fleu</strong> — Brand Hub</span>
+  <nav>
+    <ul class="topbar-nav">
+      <li><a href="#logos" onclick="setActive(this)">Logos</a></li>
+      <li><a href="#colors" onclick="setActive(this)">Colors</a></li>
+      <li><a href="#typography" onclick="setActive(this)">Typography</a></li>
+      <li><a href="#downloads" onclick="setActive(this)">Downloads</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <div class="hero-bg-word" aria-hidden="true">Fleu</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Brand Hub · 2024</p>
+    <h1 class="hero-title">Fleu<br><em>Brand System</em></h1>
+    <p class="hero-desc">Your complete brand identity — logos, colour palette, typography and all assets, ready to use across every touchpoint.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <p class="hero-meta-label">Studio</p>
+        <p class="hero-meta-value">Sezen Tunca Studio</p>
+      </div>
+      <div class="hero-meta-item">
+        <p class="hero-meta-label">Deliverable</p>
+        <p class="hero-meta-value">Brand Identity</p>
+      </div>
+      <div class="hero-meta-item">
+        <p class="hero-meta-label">Year</p>
+        <p class="hero-meta-value">2024</p>
+      </div>
+    </div>
+  </div>
+  <span class="hero-scroll" aria-hidden="true">Scroll</span>
+</section>
+
+<!-- ── LOGOS ── -->
+<section class="section" id="logos">
+  <p class="section-eyebrow">01 — Logo Suite</p>
+  <h2 class="section-title">Logo <em>Suite</em></h2>
+
+  <div class="logo-grid">
+    <!-- Primary on white -->
+    <div class="logo-card logo-white">
+      <div class="logo-card-inner">
+        <p class="logo-placeholder" style="color:var(--fleu-blue);">Fleu</p>
+      </div>
+      <div class="logo-card-footer">
+        <span class="logo-card-label">Primary — Light</span>
+        <a class="logo-dl" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">↓ Download</a>
+      </div>
+    </div>
+    <!-- Primary on blue -->
+    <div class="logo-card logo-blue">
+      <div class="logo-card-inner">
+        <p class="logo-placeholder" style="color:#fff;">Fleu</p>
+      </div>
+      <div class="logo-card-footer">
+        <span class="logo-card-label">Primary — Blue</span>
+        <a class="logo-dl" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">↓ Download</a>
+      </div>
+    </div>
+    <!-- Primary on dark -->
+    <div class="logo-card logo-dark">
+      <div class="logo-card-inner">
+        <p class="logo-placeholder" style="color:var(--fleu-sky);">Fleu</p>
+      </div>
+      <div class="logo-card-footer">
+        <span class="logo-card-label">Primary — Dark</span>
+        <a class="logo-dl" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">↓ Download</a>
+      </div>
+    </div>
+    <!-- Stacked on paper -->
+    <div class="logo-card logo-paper">
+      <div class="logo-card-inner">
+        <p class="logo-placeholder" style="color:var(--fleu-brown);font-size:clamp(22px,3.5vw,44px);letter-spacing:0.2em;">FLEU</p>
+      </div>
+      <div class="logo-card-footer">
+        <span class="logo-card-label">Wordmark — Paper</span>
+        <a class="logo-dl" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">↓ Download</a>
+      </div>
+    </div>
+    <!-- Submark on sky -->
+    <div class="logo-card logo-sky">
+      <div class="logo-card-inner">
+        <p class="logo-placeholder" style="color:#fff;font-size:clamp(48px,7vw,88px);letter-spacing:0.04em;">F</p>
+      </div>
+      <div class="logo-card-footer">
+        <span class="logo-card-label">Submark — Sky</span>
+        <a class="logo-dl" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">↓ Download</a>
+      </div>
+    </div>
+    <!-- Submark on dark -->
+    <div class="logo-card logo-invert">
+      <div class="logo-card-inner">
+        <p class="logo-placeholder" style="color:var(--fleu-sky);font-size:clamp(48px,7vw,88px);letter-spacing:0.04em;">F</p>
+      </div>
+      <div class="logo-card-footer">
+        <span class="logo-card-label">Submark — Inverse</span>
+        <a class="logo-dl" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">↓ Download</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COLORS ── -->
+<section class="section" id="colors">
+  <p class="section-eyebrow">02 — Colour Palette</p>
+  <h2 class="section-title">Colour <em>Palette</em></h2>
+  <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:40px;">Click any swatch to copy hex code</p>
+
+  <div class="color-grid">
+
+    <!-- Blue -->
+    <div class="color-card">
+      <div class="color-swatch sw-blue" onclick="copyColor('#8C9EC1', this)">
+        <span class="color-copy-hint" style="color:rgba(255,255,255,0.7);">Copy Hex</span>
+      </div>
+      <p class="color-name">Fleu Blue</p>
+      <div class="color-specs">
+        <div class="color-spec-row">
+          <span class="color-spec-label">Pantone</span>
+          <span class="color-spec-value">536 C</span>
+        </div>
+        <div class="color-spec-row">
+          <span class="color-spec-label">HEX</span>
+          <span class="color-spec-value">#8C9EC1</span>
+        </div>
+        <div class="color-spec-row">
+          <span class="color-spec-label">RGB</span>
+          <span class="color-spec-value">140 · 158 · 193</span>
+        </div>
+        <div class="color-spec-row">
+          <span class="color-spec-label">CMYK</span>
+          <span class="color-spec-value">27 · 18 · 0 · 24</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sky -->
+    <div class="color-card">
+      <div class="color-swatch sw-sky" onclick="copyColor('#A4BBCF', this)">
+        <span class="color-copy-hint" style="color:rgba(255,255,255,0.7);">Copy Hex</span>
+      </div>
+      <p class="color-name">Fleu Sky</p>
+      <div class="color-specs">
+        <div class="color-spec-row">
+          <span class="color-spec-label">Pantone</span>
+          <span class="color-spec-value">651 C</span>
+        </div>
+        <div class="color-spec-row">
+          <span class="color-spec-label">HEX</span>
+          <span class="color-spec-value">#A4BBCF</span>
+        </div>
+        <div class="color-spec-row">
+          <span class="color-spec-label">RGB</span>
+          <span class="color-spec-value">164 · 187 · 207</span>
+        </div>
+        <div class="color-spec-row">
+          <span class="color-spec-label">CMYK</span>
+          <span class="color-spec-value">21 · 10 · 0 · 19</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brown -->
+    <div class="color-card">
+      <div class="color-swatch sw-brown" onclick="copyColor('#3D1B0A', this)">
+        <span class="color-copy-hint" style="color:rgba(164,187,207,0.7);">Copy Hex</span>
+      </div>
+      <p class="color-name">Fleu Brown</p>
+      <div class="color-specs">
+        <div class="color-spec-row">
+          <span class="color-spec-label">Pantone</span>
+          <span class="color-spec-value">2322 C</span>
+        </div>
+        <div class="color-spec-row">
+          <span class="color-spec-label">HEX</span>
+          <span class="color-spec-value">#3D1B0A</span>
+        </div>
+        <div class="color-spec-row">
+          <span class="color-spec-label">RGB</span>
+          <span class="color-spec-value">61 · 27 · 10</span>
+        </div>
+        <div class="color-spec-row">
+          <span class="color-spec-label">CMYK</span>
+          <span class="color-spec-value">0 · 56 · 84 · 76</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── TYPOGRAPHY ── -->
+<section class="section" id="typography">
+  <p class="section-eyebrow">03 — Typography</p>
+  <h2 class="section-title">Type <em>System</em></h2>
+
+  <!-- Display -->
+  <div class="type-section">
+    <p class="type-label">Display — IvyPresto Headline</p>
+    <p class="type-specimen-display">Bloom<em> &amp; Form</em></p>
+    <p class="type-specimen-body">"Every detail is an invitation — the weight of paper, the curve of a letter, the silence between words."</p>
+    <div class="type-weights">
+      <div class="type-weight-item">
+        <p class="type-weight-sample" style="font-weight:300;">Fleu</p>
+        <p class="type-weight-label">Light 300</p>
+      </div>
+      <div class="type-weight-item">
+        <p class="type-weight-sample" style="font-style:italic;font-weight:300;"><em>Fleu</em></p>
+        <p class="type-weight-label">Light Italic</p>
+      </div>
+      <div class="type-weight-item">
+        <p class="type-weight-sample" style="font-weight:400;">Fleu</p>
+        <p class="type-weight-label">Regular 400</p>
+      </div>
+      <div class="type-weight-item">
+        <p class="type-weight-sample" style="font-style:italic;font-weight:400;"><em>Fleu</em></p>
+        <p class="type-weight-label">Italic 400</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sans -->
+  <div class="type-section">
+    <p class="type-label">Body &amp; UI — Neue Montreal</p>
+    <p class="type-sans-specimen">Made with care,<br>built to last.</p>
+    <p class="type-sans-body">Neue Montreal is used for all body text, captions, labels and interface elements. Its clean geometry balances the warmth of IvyPresto.</p>
+    <div class="type-sans-weights">
+      <div class="type-weight-item">
+        <p class="type-sans-weight" style="font-weight:300;">Light 300</p>
+        <p class="type-weight-label">Body</p>
+      </div>
+      <div class="type-weight-item">
+        <p class="type-sans-weight" style="font-weight:400;">Regular 400</p>
+        <p class="type-weight-label">UI / Labels</p>
+      </div>
+      <div class="type-weight-item">
+        <p class="type-sans-weight" style="font-weight:500;">Medium 500</p>
+        <p class="type-weight-label">Emphasis</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DOWNLOADS ── -->
+<section class="section" id="downloads">
+  <p class="section-eyebrow">04 — Downloads</p>
+  <h2 class="section-title">All <em>Files</em></h2>
+
+  <div class="dl-grid">
+    <a class="dl-row" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">
+      <div class="dl-icon">SVG</div>
+      <div class="dl-info">
+        <p class="dl-name">Logo Suite — SVG</p>
+        <p class="dl-meta">Tüm logo versiyonları · Vektör</p>
+      </div>
+      <span class="dl-arrow">↗</span>
+    </a>
+    <a class="dl-row" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">
+      <div class="dl-icon">PNG</div>
+      <div class="dl-info">
+        <p class="dl-name">Logo Suite — PNG</p>
+        <p class="dl-meta">Tüm logo versiyonları · @2x · Şeffaf</p>
+      </div>
+      <span class="dl-arrow">↗</span>
+    </a>
+    <a class="dl-row" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">
+      <div class="dl-icon">AI</div>
+      <div class="dl-info">
+        <p class="dl-name">Logo Suite — Illustrator</p>
+        <p class="dl-meta">Düzenlenebilir AI dosyaları</p>
+      </div>
+      <span class="dl-arrow">↗</span>
+    </a>
+    <a class="dl-row" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">
+      <div class="dl-icon">PDF</div>
+      <div class="dl-info">
+        <p class="dl-name">Brand Guidelines</p>
+        <p class="dl-meta">Kullanım kılavuzu · Tam döküman</p>
+      </div>
+      <span class="dl-arrow">↗</span>
+    </a>
+    <a class="dl-row" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">
+      <div class="dl-icon">ASE</div>
+      <div class="dl-info">
+        <p class="dl-name">Colour Swatches</p>
+        <p class="dl-meta">Adobe Swatch Exchange · Pantone &amp; HEX</p>
+      </div>
+      <span class="dl-arrow">↗</span>
+    </a>
+    <a class="dl-row" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">
+      <div class="dl-icon">TTF</div>
+      <div class="dl-info">
+        <p class="dl-name">Font Files</p>
+        <p class="dl-meta">IvyPresto Headline · Neue Montreal</p>
+      </div>
+      <span class="dl-arrow">↗</span>
+    </a>
+  </div>
+
+  <div style="margin-top:32px;">
+    <a class="dl-all" href="https://drive.google.com/drive/folders/1VGDdLTmuSn3V9oCfadHWf2XOLXVOOjWY" target="_blank">
+      Tüm Dosyaları Aç — Google Drive ↗
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="brand-footer">
+  <div class="brand-footer-left">
+    Fleu Brand Hub<br>
+    Designed by Sezen Tunca Studio · 2024<br>
+    hello@sezentunca.com
+  </div>
+  <div class="brand-footer-right">
+    <a href="/">Sezen Tunca <em>Studio</em></a>
+  </div>
+</footer>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<script>
+function copyColor(hex, el){
+  navigator.clipboard.writeText(hex).then(()=>{
+    el.classList.add('copied');
+    showToast(hex + ' kopyalandı');
+    setTimeout(()=>el.classList.remove('copied'), 1200);
+  });
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2000);
+}
+
+function setActive(a){
+  document.querySelectorAll('.topbar-nav a').forEach(x=>x.classList.remove('active'));
+  a.classList.add('active');
+}
+
+// Update active nav on scroll
+const sections = ['logos','colors','typography','downloads'];
+window.addEventListener('scroll', ()=>{
+  const scrollY = window.scrollY + 100;
+  sections.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    if(el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY){
+      document.querySelectorAll('.topbar-nav a').forEach(a=>{
+        a.classList.toggle('active', a.getAttribute('href')==='#'+id);
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>
