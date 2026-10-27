@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/brandhub/:client", "destination": "/brand/:client.html" },
+    { "source": "/brandhub/:client/", "destination": "/brand/:client.html" }
+  ]
+}
