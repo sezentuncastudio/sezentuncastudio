@@ -270,6 +270,19 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: var(--text);
   .sig-dl:hover { opacity: 0.6; }
   .sig-ai-card { border-top: 1px solid var(--border); }
 
+
+  .guidelines-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  .guidelines-cover { padding: 40px 36px 32px; display: flex; flex-direction: column; justify-content: space-between; min-height: 200px; }
+  .guidelines-cover-inner { display: flex; align-items: center; gap: 16px; }
+  .guidelines-cover-title { font-size: 22px; font-weight: 700; color: #f5f5ec; letter-spacing: -0.01em; }
+  .guidelines-cover-label { font-size: 28px; font-weight: 700; color: #f5f5ec; line-height: 1.1; margin-top: 24px; }
+  .guidelines-meta { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; gap: 16px; background: var(--bg); flex-wrap: wrap; }
+  .guidelines-info { flex: 1; min-width: 0; }
+  .guidelines-title { font-size: 15px; font-weight: 600; color: var(--fg); }
+  .guidelines-desc { font-size: 13px; color: var(--fg-muted); margin-top: 3px; }
+  .guidelines-dl { display: flex; align-items: center; gap: 8px; padding: 9px 20px; background: var(--fg); color: var(--bg); border-radius: 20px; font-size: 13px; font-weight: 600; text-decoration: none; letter-spacing: 0.03em; white-space: nowrap; transition: opacity 0.15s; flex-shrink: 0; }
+  .guidelines-dl:hover { opacity: 0.8; }
+
 </style>
 </head>
 <body>
@@ -283,6 +296,7 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: var(--text);
     <a href="#colors">Colors</a>
     <a href="#typography">Typography</a>
     <a href="#downloads">Downloads</a>
+    <a href="#guidelines">Guidelines</a>
     <a href="#editables">Editables</a>
   </div>
 </nav>
@@ -579,8 +593,34 @@ body { font-family: 'DM Sans', sans-serif; background: #fff; color: var(--text);
   </div>
 </section>
 
+<section class="section" id="guidelines">
+  <div class="section-meta"><span class="section-tag">05</span><span class="section-title">Brand Guidelines</span></div>
+  <div class="guidelines-card">
+    <div class="guidelines-cover" style="background:#470e2d;">
+      <div class="guidelines-cover-inner">
+        <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="26" cy="26" r="22" stroke="#f0c601" stroke-width="2.5" fill="none" stroke-dasharray="6 3"/>
+          <circle cx="26" cy="26" r="13" stroke="#f0c601" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+          <circle cx="26" cy="26" r="5" fill="#f0c601"/>
+        </svg>
+        <span class="guidelines-cover-title">marveltour</span>
+      </div>
+      <span class="guidelines-cover-label">Brand Guidelines</span>
+    </div>
+    <div class="guidelines-meta">
+      <div class="guidelines-info">
+        <div class="guidelines-title">Marveltour Brand Guidelines</div>
+        <div class="guidelines-desc">Logo kullan&#305;m&#305;, renk paleti, tipografi ve marka kurallar&#305; &mdash; 17 sayfa</div>
+      </div>
+      <a class="guidelines-dl" href="./assets/marveltour-brand-guidelines.pdf" download="marveltour-brand-guidelines.pdf">
+        PDF indir &#8595;
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="editables">
-  <div class="section-meta"><span class="section-tag">05</span><span class="section-title">Editables</span></div>
+  <div class="section-meta"><span class="section-tag">06</span><span class="section-title">Editables</span></div>
   <div class="editables-grid">
 
     <div class="editable-card">
