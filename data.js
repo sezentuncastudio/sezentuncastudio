@@ -1,9 +1,9 @@
 
-// Helper to build Wix URL
+// Helper to build local image path (img/work)
 const W = (id, w=1400) => {
   const ext = id.endsWith('.png') ? 'png' : 'jpg';
   const h = w >= 1400 ? 1800 : Math.round(w * 1.33);
-  return `https://static.wixstatic.com/media/${id}/v1/fill/w_${w},h_${h}/file.${ext}`;
+  return `/img/work/${id.replace('~mv2','').replace(/\.(jpe?g|png)$/,'')}_${w}x${h}.${ext}`;
 };
 const IMGS = {
   fleu:{
